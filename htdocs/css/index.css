@@ -136,24 +136,34 @@ div.bottom_25 {
     margin-left: 12px;
 }
 
-div.card, div.compare, div.body-focus, div.price-list {
+div.cart, div.compare, div.body-focus, div.price-list {
     position: fixed;
     width: 100px;
     height: 50px;
 }
-div.card, div.compare {
-    background: url('/image/side_arrow_left.png');
+div.cart, div.compare {
     margin-left: -50px;
 }
-div.card,div.body-focus {
+div.body-focus, div.price-list {
+    margin-left: 1050px;
+}
+div.cart,div.body-focus {
     top: 155px;
 }
 div.compare, div.price-list {
     top: 300px;
 }
-div.body-focus, div.price-list {
-    background: url('/image/side_arrow_right.png');
-    margin-left: 1050px;
+div.cart {
+    background: url('/image/side_arrow_cart.png');
+}
+div.compare {
+    background: url('/image/side_arrow_compare.png');
+}
+div.body-focus {
+    background: url('/image/side_arrow_bodyfocus.png');
+}
+div.price-list {
+    background: url('/image/side_arrow_price.png');
 }
 
 div.footer {
