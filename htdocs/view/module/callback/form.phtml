@@ -1,0 +1,33 @@
+<div class="modal-form">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#callback').ajaxForm({
+                target: ".simplemodal-wrap"
+            });
+        });
+    </script>
+    
+    <h1>Заказать обратный звонок</h1>
+
+    <form id="callback" method="post" action="<?= Adminko\System::urlFor(array('controller' => 'callback')) ?>">
+        <label>Ваше имя <span class="require">*</span></label>
+        <input type="text" class="text" name="callback_person" value="<?= $this->escape($this->fromRequest('callback_person')) ?>" />
+    <?php if ($this->error['callback_person']) { ?>
+        <span class="error"><?= $this->error['callback_person'] ?></span>
+    <?php } ?>
+        <br/>
+        <label>Телефон <span class="require">*</span></label>
+        <input type="text" class="text" name="callback_phone" value="<?= $this->escape($this->fromRequest('callback_phone')) ?>" />
+    <?php if ($this->error['callback_phone']) { ?>
+        <span class="error"><?= $this->error['callback_phone'] ?></span>
+    <?php } ?>
+        <br/>
+        <label>Комментарий</label><br/>
+        <textarea name="callback_comment"><?= $this->escape($this->fromRequest('callback_comment')) ?></textarea>
+    <?php if ($this->error['callback_comment']) { ?>
+        <span class="error"><?= $this->error['callback_comment'] ?></span>
+    <?php } ?>
+        <br/>
+        <input type="submit" class="button" value="Заказать звонок" />
+    </form>
+</div>

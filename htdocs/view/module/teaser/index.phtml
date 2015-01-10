@@ -1,0 +1,13 @@
+<div class="teaser-wrapper">
+    <div class="teaser-slideshow" 
+        data-cycle-fx=carousel
+        data-cycle-carousel-visible=1
+        data-cycle-slides="> a"
+        data-cycle-pager="#pager"
+        >
+<?php foreach ($this->teaser_list as $teaser_item) { ?>
+        <a href="<?= $teaser_item->getTeaserUrl() ?>"><img src="<?= $teaser_item->getTeaserImage() ?>"/></a>
+<?php } ?>
+    </div>
+    <div class="teaser-pager" id="pager"></div>
+</div>

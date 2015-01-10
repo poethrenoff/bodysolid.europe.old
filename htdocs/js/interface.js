@@ -97,37 +97,9 @@ function callback() {
     return false;
 }
 
-function consultItem(id){
-    $.get('/consult/' + id, function (response){
-        $(response).modal({
-            opacity: 30,
-            overlayClose: true,
-            closeHTML: '<a class="modalCloseImg" title="Закрыть"></a>'
-        });
-    });
-    return false;
-}
-
-function product_shift(productLink, shift) {
-    var pid = $(productLink).attr('pid');
-    var $product_value = $('.product_value[pid=' + pid + ']');
-    var product_value = parseInt($product_value.html());
-    if (!isNaN(product_value)) {
-        product_value = product_value + shift;
-        if (product_value > 0 && product_value < 10) {
-            $product_value.html(product_value);
-        }
-    }
-    return false;        
-}
-
 function setMark(mark) {
     $('.vote .star').removeClass('active');
     $('.vote .star:lt(' + mark + ')').addClass('active');
-}
-function addReview(reviewLink) {
-    $('#review').show('slow');
-    return false;
 }
 
 var background = [

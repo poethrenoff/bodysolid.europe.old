@@ -1,0 +1,3 @@
+<? foreach ($this->menu_tree->getChildren() as $menu_item) { ?>
+<a href="<?= $menu_item->getMenuUrl() ?>"><?= $menu_item->getMenuTitle() ?></a>
+<? } ?>

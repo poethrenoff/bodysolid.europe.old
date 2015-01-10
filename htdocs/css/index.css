@@ -174,21 +174,17 @@ a:hover {
     width: 930px;
     padding: 20px;
     margin: auto;
-    min-height: 400px;
+    min-height: 420px;
     margin-top: 100px;
     background: url('/image/content_bg.png');
 }
-
-.content .left {
-    float: left;
-    width: 200px;
-}
-
-.content .right {
-    padding-left: 225px;
-}
-.content .default {
-}
+    .content .left {
+        float: left;
+        width: 200px;
+    }
+    .content .right {
+        padding-left: 225px;
+    }
 
 .bottom_25 {
     position: absolute;
@@ -578,7 +574,34 @@ h3 {
         background-image: url('/image/card_files.png');
     }
 
-    
 .card-description {
     padding-left: 20px;
+}
+
+.modal-form {
+    width: 360px;
+    height: 280px;
+}
+
+/* Modal dialog */
+
+#simplemodal-overlay {
+    background-color: #000;
+}
+#simplemodal-container {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 20px; 
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+}
+#simplemodal-container a.modalCloseImg {
+    background: url(/image/close.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -12px;
+    right: -13px;
+    cursor: pointer;
 }
