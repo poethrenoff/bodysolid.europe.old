@@ -1,0 +1,13 @@
+<div class="title">
+    <a href="/cart">Корзина</a>
+</div>
+<?php if ($this->getSum()) { ?>
+<div class="sum">
+    <?= number_format($this->getSum(), 0, '.', ' ') ?> р.
+</div>
+<?php } ?>
+<?php if ($this->getQuantity()) { ?>
+<div class="count">
+    <?= $this->getQuantity() ?>
+</div>
+<?php } ?>

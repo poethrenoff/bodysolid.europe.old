@@ -48,6 +48,202 @@ class Metadata
             ),
         ),
         
+        /**
+         * Таблица "Каталог"
+         */
+        'catalogue' => array(
+            'title' => 'Каталог',
+            'fields' => array(
+                'catalogue_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'catalogue_parent' => array('title' => 'Родительский раздел', 'type' => 'parent'),
+                'catalogue_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+                'catalogue_short_title' => array('title' => 'Короткое название', 'type' => 'string', 'errors' => array('require')),
+                'catalogue_subtitle' => array('title' => 'Подзаголовок', 'type' => 'string'),
+                'catalogue_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'no_add' => 1, 'group' => array(), 'errors' => array('require')),
+                'catalogue_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('catalogue_parent')),
+                'catalogue_active' => array('title' => 'Видимость', 'type' => 'active'),
+            ),
+            'links' => array(
+                'product' => array('table' => 'product', 'field' => 'product_catalogue'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Товары"
+         */
+        'product' => array(
+            'title' => 'Товары',
+            'fields' => array(
+                'product_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'product_catalogue' => array('title' => 'Каталог', 'type' => 'table', 'table' => 'catalogue', 'errors' => array('require')),
+                'product_title' => array('title' => 'Название', 'type' => 'string', 'errors' => array('require')),
+                'product_article' => array('title' => 'Артикул', 'type' => 'string', 'main' => 1, 'errors' => array('require')),
+                'product_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
+                'product_short_description' => array('title' => 'Краткое описание', 'type' => 'text'),
+                'product_price_usd' => array('title' => 'Цена в долларах', 'type' => 'float'),
+                'product_price_rub' => array('title' => 'Цена в рублях', 'type' => 'float', 'errors' => array('require')),
+                'product_best' => array('title' => 'Лучший товар', 'type' => 'boolean', 'filter' => 1),
+                'product_state' => array('title' => 'Наличие', 'type' => 'select', 'filter' => 1, 'values' => array(
+                        array('value' => 'stock', 'title' => 'В наличии'),
+                        array('value' => 'absence', 'title' => 'Отсутствует'),
+                        array('value' => 'order', 'title' => 'Под заказ')), 'show' => 1, 'errors' => array('require')),
+                'product_rating' => array('title' => 'Рейтинг', 'type' => 'float', 'no_add' => true, 'no_edit' => true),
+                'product_voters' => array('title' => 'Количество голосов', 'type' => 'int', 'no_add' => true, 'no_edit' => true),
+                'product_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('product_catalogue')),
+                'product_active' => array('title' => 'Видимость', 'type' => 'active'),
+            ),
+            'links' => array(
+                'picture' => array('table' => 'picture', 'field' => 'picture_product'),
+                'video' => array('table' => 'video', 'field' => 'video_product'),
+                'download' => array('table' => 'download', 'field' => 'download_product'),
+            ),
+            'relations' => array(
+                'article' => array( 'secondary_table' => 'article', 'relation_table' => 'product_article',
+                    'primary_field' => 'product_id', 'secondary_field' => 'article_id', 'title' => 'Статьи' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Изображения"
+         */
+        'picture' => array(
+            'title' => 'Изображения',
+            'fields' => array(
+                'picture_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'picture_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => array('require')),
+                'picture_image' => array('title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'product', 'main' => 1, 'errors' => array('require')),
+                'picture_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('picture_product')),
+            )
+        ),
+        
+        /**
+         * Таблица "Видео"
+         */
+        'video' => array(
+            'title' => 'Видео',
+            'fields' => array(
+                'video_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'video_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => array('require')),
+                'video_code' => array('title' => 'Видео', 'type' => 'text', 'main' => 1, 'errors' => array('require')),
+                'video_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('video_product')),
+            )
+        ),
+        
+        /**
+         * Таблица "Файлы"
+         */
+        'download' => array(
+            'title' => 'Файлы',
+            'fields' => array(
+                'download_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'download_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => array('require')),
+                'download_title' => array('title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => array('require')),
+                'download_file' => array('title' => 'Файл', 'type' => 'file', 'upload_dir' => 'download', 'errors' => array('require')),
+                'download_size' => array('title' => 'Размер', 'type' => 'float', 'no_add' => 1, 'no_edit' => 1),
+                'download_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('download_product')),
+            )
+        ),
+        
+        /**
+         * Таблица "Связь товаров со статьями"
+         */
+        'product_article' => array(
+            'title' => 'Связь товаров со статьями',
+            'internal' => true,
+            'fields' => array(
+                'product_id' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product'),
+                'article_id' => array('title' => 'Статья', 'type' => 'table', 'table' => 'article'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Свойства"
+         */
+        'property' => array(
+            'title' => 'Свойства',
+            'fields' => array(
+                'property_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'property_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+                'property_kind' => array('title' => 'Тип свойства', 'type' => 'select', 'show' => 1, 'filter' => 1, 'values' => array(
+                        array('value' => 'number', 'title' => 'Число'),
+                        array('value' => 'string', 'title' => 'Строка'),
+                        array('value' => 'select', 'title' => 'Список')), 'errors' => array('require')),
+                'property_unit' => array('title' => 'Единица измерения', 'type' => 'string'),
+                'property_order' => array('title' => 'Порядок', 'type' => 'order'),
+                'property_active' => array('title' => 'Видимость', 'type' => 'active')
+            ),
+            'links' => array(
+                'property_value' => array('table' => 'property_value', 'field' => 'value_property', 'show' => array('property_kind' => array('select')), 'ondelete' => 'cascade'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Значения свойств"
+         */
+        'property_value' => array(
+            'title' => 'Значения свойств',
+            'fields' => array(
+                'value_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'value_property' => array('title' => 'Свойство', 'type' => 'table', 'table' => 'property', 'errors' => array('require')),
+                'value_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+            ),
+        ),
+        
+        /**
+         * Таблица "Свойства товара"
+         */
+        'product_property' => array(
+            'title' => 'Свойства товара',
+            'internal' => 1,
+            'fields' => array(
+                'product_id' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => array('require')),
+                'property_id' => array('title' => 'Свойство', 'type' => 'table', 'table' => 'property', 'errors' => array('require')),
+                'value' => array('title' => 'Значение', 'type' => 'string', 'errors' => array('require')),
+            ),
+        ),
+                
+        /**
+         * Таблица "Группы мышц"
+         */
+        'article_group' => array(
+            'title' => 'Группы мышц',
+            'fields' => array(
+                'group_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'group_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+                'group_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
+            ),
+            'relations' => array(
+                'article' => array( 'secondary_table' => 'article', 'relation_table' => 'article_group_link',
+                    'primary_field' => 'group_id', 'secondary_field' => 'article_id', 'title' => 'Статьи' ),
+            ),
+        ),
+                
+        /**
+         * Таблица "Упражнения"
+         */
+        'article' => array(
+            'title' => 'Упражнения',
+            'fields' => array(
+                'article_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'article_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+                'article_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'no_add' => 1, 'group' => array(), 'errors' => array('require')),
+                'article_text' => array('title' => 'Статья', 'type' => 'text', 'editor' => 1, 'errors' => array('require')),
+                'article_order' => array('title' => 'Порядок', 'type' => 'order'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Связь упражнений с группами мышц"
+         */
+        'article_group_link' => array(
+            'title' => 'Связь упражнений с группами мышц',
+            'internal' => true,
+            'fields' => array(
+                'group_id' => array('title' => 'Группа мышц', 'type' => 'table', 'table' => 'article_group'),
+                'article_id' => array('title' => 'Упражнение', 'type' => 'table', 'table' => 'article'),
+            ),
+        ),
+        
         ////////////////////////////////////////////////////////////////////////////////////////
         
         /**

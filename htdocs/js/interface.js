@@ -17,20 +17,13 @@ function compareItem(id, compareLink, confirm){
     return false;
 }
 
-function buyItem(buyLink){
-    var pid = $(buyLink).attr('pid');
-    var $product_value = $('.product_value[pid=' + pid + ']');
-    var $product_select = $('.product_select[pid=' + pid + ']');
-    var $in_cart = $('.in-cart[pid=' + pid + ']');
-    
-    var id = $product_select.val();
-    var quantity = $product_value.html();
-    
-    $.get('/cart/add/' + id + '/', {quantity: quantity}, function (response){
-        $("div.cart").html(response);
-        $in_cart.show('slow');
-    });
-    
+function buyItem(id, buyLink){
+    if (!$(buyLink).parent().hasClass('selected')) {
+        $.get('/cart/add/' + id + '/', {}, function (response){
+            $(buyLink).parent().addClass('selected');
+            $("div.cart").html(response);
+        });
+    }
     return false;
 }
 
@@ -66,7 +59,7 @@ function shiftItem(shiftLink, shift){
 
 function updateCart(){
     var totalQnt = 0; var totalSum = 0;
-    $('#cart').find('input[name^=quantity]').each(function(){
+    $('form.cart-form').find('input[name^=quantity]').each(function(){
         var $qntInput = $(this);
         var $priceInput = $qntInput.parent().find('input[name^=price]');
         var qnt = parseInt($qntInput.val());
@@ -75,14 +68,14 @@ function updateCart(){
         totalSum += qnt * price;
     });
     
-    var $totalRow = $('#cart').find('tr:last');
+    var $totalRow = $('form.cart-form').find('tr:last');
     var $totalQntCell = $totalRow.find('td').eq(2);
     var $totalSumCell = $totalRow.find('td').eq(3);
     $totalQntCell.html(totalQnt);
     $totalSumCell.html(totalSum);
     
-    $('#cart').ajaxSubmit(function(response){
-        $("div.cart").html(response);
+    $('form.cart-form').ajaxSubmit(function(response){
+        $(".cart").html(response);
     });
 }
 
@@ -122,4 +115,21 @@ $(function () {
             $(this).find('.product-description').hide();
         });
 	});
+    
+    $('.card-tab a').click(function() {
+        if (!$(this).hasClass('selected')) {
+            $('.card-content').children().hide('slow');
+            $('#' + $(this).attr('for')).show('slow');
+            
+            $('.card-tab a').removeClass('selected');
+            $(this).addClass('selected');
+		}
+        return false;
+    });
+    
+    $('input[href]').bind('click', function(e) {
+        if (!$(this).attr('confirm') || confirm($(this).attr('confirm'))) {
+            location.href = $(this).attr('href');
+        }
+    });    
 });

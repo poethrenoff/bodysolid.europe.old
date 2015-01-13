@@ -13,6 +13,29 @@ a:hover {
     text-decoration: none;
 }
 
+.clear {
+    clear:both;
+}
+
+input[type="text"] {
+    font-size: 12px;
+    border: 1px solid #a0a0a0;
+    width: 220px;
+}
+
+input[type="button"], input[type="submit"] {
+    color: white;
+    font-size: 12px;
+    background: #a32c14;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 5px 10px;
+    text-align: center;
+    border: none;
+    width: 180px;
+    cursor: pointer; 
+}
+
 .wrapper {
     width: 1100px;
     margin: auto;
@@ -88,10 +111,11 @@ a:hover {
             .header .left .menu ul li:first-child {
                 border-left: none;
             }
-            .header .left .menu ul li a {
+            .header .left .menu ul li span {
+                display: block;
                 color: #ffffff;
+                cursor: pointer;
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-                text-decoration: none;
                 text-transform: uppercase;
                 padding: 0px 18px;
             }
@@ -116,6 +140,7 @@ a:hover {
                 background: #666666;
             }
             .header .left .menu ul li ul li a {
+                display: block;
                 color: #ffffff;
                 text-shadow: none;
                 text-decoration: none;
@@ -150,7 +175,7 @@ a:hover {
         .header .right .client {
             position: absolute;
             width: 170px;
-            margin-top: 55px;
+            margin-top: 60px;
             text-align: right;
         }
         .header .right .client * {
@@ -239,6 +264,7 @@ a:hover {
         margin-left: 72px;
         color: #ffffff;
         font-weight: bold;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .compare .title {
@@ -252,6 +278,7 @@ a:hover {
         margin-left: 72px;
         color: #ffffff;
         font-weight: bold;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .body-focus .title {
@@ -378,8 +405,9 @@ h3 {
 }
 
 .catalogue .product {
-    display: inline-block;
+    float: left;
     width: 200px;
+    height: 220px;
     padding: 10px;
 }
     .catalogue .product .product-image {
@@ -411,32 +439,34 @@ h3 {
         .catalogue .product .product-title .product-article {
             display: table-cell;
             vertical-align: middle;
-            width: 70px;
+            width: 75px;
             height: 30px;
             font-size: 12px;
             font-weight: bold;
+            text-align: left;
         }
         .catalogue .product .product-title .product-price {
             display: table-cell;
             vertical-align: middle;
-            width: 70px;
+            width: 75px;
             height: 30px;
             font-size: 12px;
             font-weight: bold;
             color: #a32c14;
+            text-align: center;
         }
         .catalogue .product .product-title .product-cart {
             display: table-cell;
             text-align: right;
             vertical-align: middle;
-            width: 30px;
+            width: 25px;
             height: 30px;
         }
         .catalogue .product .product-title .product-compare {
             display: table-cell;
             text-align: right;
             vertical-align: middle;
-            width: 30px;
+            width: 25px;
             height: 30px;
         }
             .catalogue .product .product-title .product-cart.selected *,
@@ -447,23 +477,23 @@ h3 {
 
 .card-title {
     width: 200px;
-    height: 90px;
 }
     .card-title h1 {
         text-align: left;
-        margin-top: 5px;
         margin-left: 10px;
+        width: 150px;
     }
     .card-title h2 {
         text-align: left;
-        margin-top: 5px;
         margin-left: 10px;
+        width: 150px;
     }
     .card-title p.status {
         color: #bbbbbb;
         font-style: italic;
-        margin-top: 5px;
         margin-left: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
     }
     .card-title .favourite {
         position: absolute;
@@ -574,16 +604,40 @@ h3 {
         background-image: url('/image/card_files.png');
     }
 
-.card-description {
+.card-content {
     padding-left: 20px;
 }
+    #card-content-video {
+        text-align: center;
+    }
+
+ul.card-gallery {
+    padding: 0px;
+    margin: 0px;
+}
+    ul.card-gallery li {
+        padding-right: 10px;
+        padding-bottom: 10px;
+        list-style: none;
+        float: left;
+        width: 210px;
+        height: 180px;
+        text-align: center;
+    }
+
+ul.card-list {
+    padding-left: 20px;
+}
+
+    ul.card-list li {
+        padding-bottom: 10px;
+    }
+
 
 .modal-form {
     width: 360px;
     height: 280px;
 }
-
-/* Modal dialog */
 
 #simplemodal-overlay {
     background-color: #000;
@@ -604,4 +658,79 @@ h3 {
     top: -12px;
     right: -13px;
     cursor: pointer;
+}
+
+
+.noselect {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+.cart-form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-form table td {
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #a0a0a0;
+}
+.cart-form table td.name {
+    width: 380px;
+}
+.cart-form table td.price {
+    width: 80px;
+}
+.cart-form table td.quantity {
+    width: 100px;
+}
+.cart-form table td.cost {
+    width: 100px;
+}
+.cart-form table td.delete {
+    width: 80px;
+}
+.cart-form table .cart_image_container {
+    display: table-cell;
+    width: 120px;
+    text-align: center;
+    vertical-align: middle;
+}
+.cart-form table .cart_title_container {
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle
+} 
+.cart-form table td.title, .cart-form table td.total.price {
+    font-size: 14px;
+    font-weight: bold;
+}
+.cart-form table td.total.quantity, .cart-form table td.total.cost {
+    font-weight: bold;
+}
+.cart-form table td.total.name, .cart-form table td.total.delete {
+    border: none;
+}        
+.cart-form table span.quantity {
+    font-size: 18px;
+    text-align: center;
+    margin: 0px 10px;
+}
+.cart-form table .cart_dec, .cart-form table .cart_inc {
+    display: inline-block;
+    width: 11px;
+    height: 15px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+.cart-form table .cart_dec {
+    background-image: url('/image/product-dec.png');
+}
+.cart-form table .cart_inc {
+    background-image: url('/image/product-inc.png');
 }

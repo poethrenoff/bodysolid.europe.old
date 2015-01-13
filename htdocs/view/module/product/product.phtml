@@ -1,0 +1,34 @@
+<?php $cart = Adminko\Cart::factory(); ?> 
+<div class="product">
+    <div class="product-hover">
+        <div class="product-description">
+            <a href="<?= $this->getProductUrl() ?>">
+                <h3><?= $this->getProductTitle() ?></h3>
+                <p><?= $this->getProductShortDescription() ?></p>
+            </a>
+        </div>
+        <div class="product-image">
+            <a href="<?= $this->getProductUrl() ?>">
+                <img src="<?= $this->getProductImage() . '/r/180/180' ?>" />
+            </a>
+        </div>
+    </div>
+    <div class="product-title">
+        <div class="product-article">
+            <nobr><?= $this->getProductArticle() ?></nobr>
+        </div>
+        <div class="product-price">
+            <?= number_format($this->getProductPrice(), 0, '.', ' ') ?> р.
+        </div>
+        <div class="product-cart<?php if ($cart->in($this->getId())) { ?> selected<?php } ?>">
+            <a href="/cart" onclick="return buyItem(<?= $this->getId() ?>, this)">
+                <img src="/image/cart.png" />
+            </a>
+        </div>
+        <div class="product-compare">
+            <a href="/compare">
+                <img src="/image/compare.png" />
+            </a>
+        </div>
+    </div>
+</div>

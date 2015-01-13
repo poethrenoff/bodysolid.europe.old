@@ -1,0 +1,18 @@
+<ul>
+<?php foreach ($this->getChildren() as $group_item) { ?>
+    <li>
+        <span>
+            <?= $group_item->getCatalogueShortTitle() ?> 
+        </span>
+        <ul>
+<?php 	foreach ($group_item->getChildren() as $category_item) { ?>
+            <li>
+                <a href="<?= $category_item->getCatalogueUrl() ?>">
+                    <?= $category_item->getCatalogueShortTitle() ?> 
+                </a>
+            </li>
+<?php 	} ?>
+        </ul>
+    </li>
+<?php } ?>
+</ul>

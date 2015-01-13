@@ -1,0 +1,98 @@
+<?php $cart = Adminko\Cart::factory(); ?> 
+<div class="left">
+    <div class="card-title">
+<?php if (!$this->client) { ?>
+        <div class="favourite">
+            <a href="" class="like"></a>
+        </div>
+<?php } ?>
+        <h1><?= $this->product->getProductArticle() ?></h1>
+        <h2><?= $this->product->getProductTitle() ?></h2>
+<?php if (!$this->client) { ?>
+        <p class="status"><?= $this->product->getProductStateTitle() ?></p>
+<?php } ?>
+    </div>
+    <div class="card-image">
+        <a href="<?= $this->product->getProductUrl() ?>">
+            <img src="<?= $this->product->getProductImage() ?>/r/180/180" />
+        </a>
+    </div>
+<?php if (!$this->client) { ?>
+    <div class="card-rating">
+        <div class="vote">
+            <div class="star active"></div>
+            <div class="star active"></div>
+            <div class="star active"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+<?php } ?>
+    <div class="card-price">
+        <?= number_format($this->product->getProductPrice(), 0, '.', ' ') ?> р.
+    </div>
+    <div class="card-cart<?php if ($cart->in($this->product->getId())) { ?> selected<?php } ?>">
+        <a href="/cart" onclick="return buyItem(<?= $this->product->getId() ?>, this)">Купить</a>
+    </div>
+    <div class="card-compare">
+        <a href="/compare">Сравнить</a>
+    </div>
+</div>
+<div class="right">
+    <div class="card-tab">
+        <a href="" class="card-tab-text selected" for="card-content-text">Описание</a>
+        <a href="" class="card-tab-properties" for="card-content-properties">Свойства</a>
+        <a href="" class="card-tab-photoes" for="card-content-photoes">Фото</a>
+        <a href="" class="card-tab-video" for="card-content-video">Видео</a>
+        <a href="" class="card-tab-files" for="card-content-files">Файлы</a>
+    </div>
+    <div class="card-content">
+        <div id="card-content-text" style="display: block" class="noselect">
+            <?= $this->product->getProductDescription() ?>
+        </div>
+        <div id="card-content-properties" style="display: none">
+            <ul class="card-list">
+<?php   foreach ($this->product->getPropertyList() as $property) { ?>
+<?php       if (!is_empty($property->getPropertyValue())) { ?>
+                <li>
+                    <?= $property->getPropertyTitle() ?>: <?= $property->getPropertyValue() ?> <?= $property->getPropertyUnit() ?>
+                </li>
+<?php       } ?>
+<?php   } ?>
+            </ul>
+        </div>
+        <div id="card-content-photoes" style="display: none">
+            <script type="text/javascript" src="/js/fancybox/jquery.fancybox.pack.js" ></script>
+            <link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox.css" />
+            <script>
+                $(document).ready(function() {
+                    $(".fancybox").fancybox();
+                });
+            </script>
+            <ul class="card-gallery">
+<?php foreach ($this->product->getPictureList() as $picture) { ?>
+                <li>
+                    <a class="fancybox" rel="fancybox" href="<?= $picture->getPictureImage() ?>" title="">
+                        <img src="<?= $picture->getPictureImage() . '/r/180/180' ?>" border="0">
+                    </a>
+                </li>
+<?php } ?>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div id="card-content-video" style="display: none">
+<?php foreach ($this->product->getVideoList() as $video) { ?>
+            <?= $video->getVideoCode(); ?>
+<?php } ?>
+        </div>
+        <div id="card-content-files" style="display: none">
+            <ul class="card-list">
+<?php foreach ($this->product->getDownloadList() as $download) { ?>
+                <li>
+                    <a href="<?= $download->getDownloadFile() ?>"><?= $download->getDownloadTitle() ?></a> (<?= format_size($download->getDownloadSize()) ?>)
+                </li>
+<?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>

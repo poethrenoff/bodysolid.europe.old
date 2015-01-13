@@ -1,0 +1,10 @@
+<div class="catalogue">
+    <h1><?= $this->getCatalogueTitle() ?></h1>
+<?php if ($this->getCatalogueSubtitle()) { ?>
+    <h2><?= $this->getCatalogueSubtitle() ?></h2>
+<?php } ?>
+<?php foreach ($this->getProductList() as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+    <div class="clear"></div>
+</div>

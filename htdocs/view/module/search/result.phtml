@@ -1,0 +1,13 @@
+<?php $search_count = count($this->product_list); $search_index = 0; ?>
+<h1>Результаты поиска</h1>
+<?php if (!$search_count) { ?>
+<h2>По вашему запросу ничего не найдено.</h2>
+<p><a href="javascript:history.go(-1)">Вернуться назад</a></p>
+<?php } else { ?>
+<div class="catalogue">
+<?php foreach ($this->product_list as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+    <div class="clear"></div>
+</div>
+<?php } ?>

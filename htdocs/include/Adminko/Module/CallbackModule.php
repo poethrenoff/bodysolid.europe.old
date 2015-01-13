@@ -11,7 +11,7 @@ class CallbackModule extends Module
     protected function actionIndex()
     {
         if (!System::isAjax()) {
-            System::notFound();
+            System::redirectTo('/');
         }
         
         if (Session::flash('callback_complete')) {

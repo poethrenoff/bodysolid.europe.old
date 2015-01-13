@@ -35,31 +35,13 @@
                             </a>
                         </div>
                         <div class="email">
-                            <a href="mailto:">
+                            <a href="mailto:andreisport@bodysolid.ru">
                                 <img src="/image/top_mail.png" />
                             </a>
                         </div>
                     </div>
                     <div class="menu">
-                        <ul>
-                            <li>
-                                <a href="/">Станции</a>
-                                <ul>
-                                    <li>
-                                        <a href="/">Нагружаемые дисками</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Машины Смита</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Скамьи и стойки</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="/">Серии</a></li>
-                            <li><a href="/">Функции</a></li>
-                            <li><a href="/">Кардио</a></li>
-                        </ul>
+<?= $this->catalogue ?>
                     </div>
                 </div>
                 <div class="right">
@@ -89,15 +71,7 @@
 <?php } ?>
             </div>
             <div class="cart">
-                <div class="title">
-                    <a href="/">Корзина</a>
-                </div>
-                <div class="sum">
-                    156 000 р.
-                </div>
-                <div class="count">
-                    10
-                </div>
+<?= $this->cart ?>
             </div>
             <div class="compare">
                 <div class="title">
@@ -122,14 +96,7 @@
             </div>
             <div class="footer">
                 <div class="search">
-                    <form method="get" action="/search">
-                        <div class="text">
-                            <input type="text" name="search" placeholder="Поиск..." />
-                        </div>
-                        <div class="submit">
-                            <input type="submit" value="" />
-                        </div>
-                    </form>
+<?= $this->search ?>
                 </div>
                 <div class="copyright">
                     <p>&copy; ООО "Фитнесспорт", 2015 г.</p>
