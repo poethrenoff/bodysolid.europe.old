@@ -753,3 +753,29 @@ ul.card-list {
 .compare-table td.equal {
     color: #b0b0b0;
 }
+
+.price-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+    .price-list-table td {
+        padding: 5px;
+        vertical-align: middle;
+        border: 1px solid #a0a0a0;
+    }
+    .price-list-table td.group {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .price-list-table td.category {
+        font-weight: bold;
+        padding-left: 50px;
+    }
+    .price-list-table td.price {
+        font-weight: bold;
+        text-align: right;
+    }
+    .price-list-table tr.odd {
+        background: #f0f0f0;
+    }

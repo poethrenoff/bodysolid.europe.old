@@ -1,0 +1,27 @@
+<h1>Прайс-лист</h1>
+<table class="price-list-table">
+<?php foreach ($this->getChildren() as $group_item) { ?>
+    <tr<?php if (++$odd % 2) { ?> class="odd"<?php } ?>>
+        <td colspan="2" class="group">
+            <?= $group_item->getCatalogueTitle() ?>
+        </td>
+    </tr>
+<?php 	foreach ($group_item->getChildren() as $category_item) { ?>
+    <tr<?php if (++$odd % 2) { ?> class="odd"<?php } ?>>
+        <td colspan="2" class="category">
+            <?= $category_item->getCatalogueShortTitle() ?>
+        </td>
+    </tr>
+<?php       foreach ($category_item->getProductList() as $product_item) { ?>
+    <tr<?php if (++$odd % 2) { ?> class="odd"<?php } ?>>
+        <td class="title">
+            <a href="<?= $product_item->getProductUrl() ?>"><?= $product_item->getProductArticle() ?> <?= $product_item->getProductTitle() ?></a>
+        </td>
+        <td class="price">
+            <?= number_format($product_item->getProductPrice(), 0, '.', ' ') ?> р.
+        </td>
+    </tr>
+<?php       } ?>
+<?php 	} ?>
+<?php } ?>
+</table>
