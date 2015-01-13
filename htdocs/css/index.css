@@ -210,6 +210,24 @@ input[type="button"], input[type="submit"] {
     .content .right {
         padding-left: 225px;
     }
+    .content .body-focus-left {
+        float: left;
+        width: 300px;
+    }
+    .content .body-focus-left .male_female {
+        position: absolute;
+        z-index: 3;
+    }   
+        .content .body-focus-left .male_female a {
+            color: #b0b0b0;
+        }
+        .content .body-focus-left .male_female a.selected {
+            color: #a32c14;
+        }
+    .content .body-focus-right {
+        padding-left: 325px;
+        min-height: 440px;
+    }
 
 .bottom_25 {
     position: absolute;

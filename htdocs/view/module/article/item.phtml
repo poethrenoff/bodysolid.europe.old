@@ -1,0 +1,20 @@
+<h1>Целевые мышцы</h1>
+<h2><?= $this->getArticleTitle() ?></h2>
+<?php if ($this->inRequest('all')) { ?>
+<div class="catalogue">
+<?php foreach ($this->getProductList() as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+    <div class="clear"></div>
+</div>
+<p style="text-align: right"><a href="<?= $this->getArticleUrl() ?>">Вернуться к статье</a></p>
+<?php } else { ?>
+<?= $this->getArticleText() ?>
+<div class="catalogue">
+<?php foreach ($this->getProductList(4) as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+    <div class="clear"></div>
+</div>
+<p style="text-align: right"><a href="<?= $this->getArticleUrl() ?>?all">Показать все тренажеры</a></p>
+<?php } ?>

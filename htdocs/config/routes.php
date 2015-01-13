@@ -14,4 +14,10 @@ $routes = array(
         'catalogue' => '\w+',
         'action' => 'item'
     ),
+    // Путь к статье
+    '/body_focus/@article' => array(
+        'controller' => 'body_focus',
+        'article' => '\w+',
+        'action' => 'item'
+    ),
 );

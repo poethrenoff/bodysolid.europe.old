@@ -67,7 +67,7 @@ class ProductModule extends Module
     public function getCatalogue($catalogue_name)
     {
         try {
-            $catalogue = model::factory('catalogue')->getByName($catalogue_name);
+            $catalogue = Model::factory('catalogue')->getByName($catalogue_name);
         } catch (\AlarmException $e) {
             System::notFound();
         }

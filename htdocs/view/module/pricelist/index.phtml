@@ -3,13 +3,13 @@
 <?php foreach ($this->getChildren() as $group_item) { ?>
     <tr<?php if (++$odd % 2) { ?> class="odd"<?php } ?>>
         <td colspan="2" class="group">
-            <?= $group_item->getCatalogueTitle() ?>
+            <?= $group_item->getCatalogueTitle() ?> 
         </td>
     </tr>
 <?php 	foreach ($group_item->getChildren() as $category_item) { ?>
     <tr<?php if (++$odd % 2) { ?> class="odd"<?php } ?>>
         <td colspan="2" class="category">
-            <?= $category_item->getCatalogueShortTitle() ?>
+            <?= $category_item->getCatalogueShortTitle() ?> 
         </td>
     </tr>
 <?php       foreach ($category_item->getProductList() as $product_item) { ?>

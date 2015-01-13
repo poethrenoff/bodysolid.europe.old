@@ -94,6 +94,27 @@ class ProductModel extends Model
         );
     }
     
+    // Возвращает товары по статье
+    public function getByArticle($article, $limit = null)
+    {
+        $records = Db::selectAll('
+            select
+                product.*
+            from 
+                product
+                inner join catalogue on product.product_catalogue = catalogue.catalogue_id
+                inner join product_article on product_article.product_id = product.product_id
+            where
+                product_article.article_id = :article_id and
+                product_active = :product_active and catalogue_active = :catalogue_active
+            order by
+                product_order asc
+            ' . ($limit ? ('limit ' . $limit) : ''),
+            array('article_id' => $article->getId(), 'product_active' => 1, 'catalogue_active' => 1)
+        );        
+        return $this->getBatch($records);
+    }
+    
     // Поисковый запрос
     public function getSearchResult($search_value)
     {
@@ -111,11 +132,15 @@ class ProductModel extends Model
         }
         
         $records = Db::selectAll('
-            select product.* from product
+            select
+                product.*
+            from
+                product
                 inner join catalogue on product.product_catalogue = catalogue.catalogue_id
             where (' . join(' or ', $filter_clause) . ') and
                 product_active = :product_active and catalogue_active = :catalogue_active
-            order by product_order asc',
+            orde$r by
+                product_order asc',
             $filter_binds + array('product_active' => 1, 'catalogue_active' => 1)
         );
         

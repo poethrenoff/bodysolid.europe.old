@@ -210,6 +210,7 @@ class Metadata
             'fields' => array(
                 'group_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'group_title' => array('title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => array('require')),
+                'group_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'group' => array(), 'errors' => array('require')),
                 'group_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
             ),
             'relations' => array(
@@ -229,6 +230,10 @@ class Metadata
                 'article_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'no_add' => 1, 'group' => array(), 'errors' => array('require')),
                 'article_text' => array('title' => 'Статья', 'type' => 'text', 'editor' => 1, 'errors' => array('require')),
                 'article_order' => array('title' => 'Порядок', 'type' => 'order'),
+            ),
+            'relations' => array(
+                'product' => array( 'secondary_table' => 'product', 'relation_table' => 'product_article',
+                    'primary_field' => 'article_id', 'secondary_field' => 'product_id', 'title' => 'Товары' ),
             ),
         ),
         

@@ -1,0 +1,102 @@
+<div class="body-focus-left">
+    <script type="text/javascript">
+        function swapImage(id, src) {
+            $('#' + id).attr('src', src);
+        }
+        function showOnly(group, id) {
+            $('div[name|="' + group + '"]').hide();
+            $('#' + id).show();
+        } 
+        function highlight(id) {
+            $('.male_female a').removeClass('selected');
+            $('#' + id).addClass('selected');
+        }
+        function none() {
+            return false;
+        }
+    </script>
+
+    <div class="male_female">
+        <a id="male" href="javascript:showOnly('body','male_front');swapImage('body_focus_male_front','/image/body_focus/bfs_male_front.png');showOnly('articles','default');highlight('male');" class="selected">Мужчины</a> | <a id="female" href="javascript:showOnly('body','female_front');swapImage('body_focus_female_front','/image/body_focus/bfs_female_front.png');showOnly('articles','default');highlight('female');">Женщины</a>
+    </div>
+
+    <div id="male_front" name="body" style="display:block;">
+        <img src="/image/body_focus/bfs_male_front.png" alt="Male Front View" border="0" usemap="#male_front" id="body_focus_male_front" name="body_focus_male_front"/>
+        <map name="male_front">
+          <area shape="poly" coords="166,209,149,230,149,258,153,280,158,310,159,313,173,302,182,304,186,272,189,242,189,222,184,201,180,185,173,201" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_legs.png');showOnly('articles', 'legs');"/>
+          <area shape="poly" coords="119,210,121,197,115,189,107,201,103,231,104,259,106,283,110,304,116,298,125,308,135,312,136,292,138,280,142,267,145,230,137,225,124,217" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_legs.png');showOnly('articles','legs');" />
+          <area shape="poly" coords="43,200,53,159,64,140,75,114,98,93,99,114,88,131,82,144,76,162,66,174,56,192" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_arms.png');showOnly('articles','arms');"  />
+          <area shape="poly" coords="193,98,214,113,223,125,232,137,240,152,244,166,254,190,245,192,240,184,231,176,219,158,211,141,199,127,193,116" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_arms.png');showOnly('articles','arms');"  />
+          <area shape="poly" coords="130,127,121,141,111,139,115,158,113,186,126,200,133,206,142,216,152,216,160,207,165,198,171,187,180,182,177,163,183,137,175,142,169,135,165,126,147,118" href="javascript:none();" alt="Пресс" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_stomach.png');showOnly('articles','core');" />
+          <area shape="poly" coords="138,85,124,76,113,79,101,91,100,106,104,123,116,127,132,123,143,117,150,114,158,119,169,125,179,129,187,123,189,110,191,94,180,79,170,80,157,82,147,88" href="javascript:none();" alt="Грудь" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_chest.png');showOnly('articles','chest');" />
+          <area shape="poly" coords="179,74,194,75,206,89,209,100,213,105,213,110,192,94,187,87" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_arms.png');showOnly('articles','arms');"  />
+          <area shape="poly" coords="116,72,98,74,84,90,81,102,78,110,88,100,97,91,107,84" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_front','/image/body_focus/bfs_male_front_arms.png');showOnly('articles','arms');"  />
+          <area shape="rect" coords="7,317,83,445" href="javascript:showOnly('body','male_back');swapImage('body_focus_male_back','/image/body_focus/bfs_male_back.png');showOnly('articles','default');" alt="Вид сзади" />
+        </map>
+    </div>
+
+    <div id="male_back" name="body" style="display:none;">
+        <img src="/image/body_focus/bfs_male_back.png" alt="Male Back View" border="0" usemap="#male_back" id="body_focus_male_back" name="body_focus_male_back"/> 
+        <map name="male_back">
+          <area shape="poly" coords="112,287,111,312,108,331,107,349,110,374,121,362,129,373,132,348,133,328,138,289,140,266,139,250,129,239,119,246,113,265" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_legs.png');showOnly('articles','legs');" />
+          <area shape="poly" coords="176,246,169,238,161,242,156,255,155,275,156,293,161,320,161,345,164,374,176,364,184,370,187,341,184,326,182,306,181,284,184,270,182,257" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_legs.png');showOnly('articles','legs');" />
+          <area shape="poly" coords="231,194,228,180,217,168,208,141,194,111,198,96,213,102,224,125,233,149,240,172,246,201" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_arms.png');showOnly('articles','arms');" />
+          <area shape="poly" coords="99,91,104,97,102,108,92,124,78,139,72,160,61,174,47,193,33,199,41,179,47,160,55,141,64,128,79,102" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_arms.png');showOnly('articles','arms');" />
+          <area shape="poly" coords="129,76,113,84,106,93,101,116,106,135,119,164,136,159,148,156,174,162,177,153,182,141,189,128,192,112,192,97,186,91,173,81,163,72,149,67,138,71" href="javascript:none();" alt="Спина" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_lats.png');showOnly('articles','back');" />
+          <area shape="poly" coords="131,186,117,189,112,195,109,207,105,220,109,235,119,240,132,239,143,233,146,225,151,234,161,239,179,239,188,231,184,213,181,195,175,189,161,187,147,197,140,192" href="javascript:none();" alt="Ягодицы" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_glutes.png');showOnly('articles','glutes');"/>
+          <area shape="poly" coords="82,92,89,80,99,71,115,70,107,79,103,87,95,90,80,100" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_arms.png');showOnly('articles','arms');"/>
+          <area shape="poly" coords="210,87,197,73,188,70,180,71,177,78,192,92,200,98,213,102" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_arms.png');showOnly('articles','arms');" /> 
+          <area shape="poly" coords="149,156,132,160,118,168,114,184,124,184,138,184,149,194,156,183,167,183,179,187,174,167,167,162" href="javascript:none();" alt="Поясница" onmouseover="swapImage('body_focus_male_back','/image/body_focus/bfs_male_back_lowerback.png');showOnly('articles','lowerback');" />
+          <area shape="rect" coords="6,324,88,444" href="javascript:showOnly('body','male_front');swapImage('body_focus_male_front','/image/body_focus/bfs_male_front.png');showOnly('articles','default');" alt="Вид спереди" />
+        </map>
+    </div>
+
+    <div id="female_front" name="body" style="display:none;">
+        <img src="/image/body_focus/bfs_female_front.png" alt="Female Front View" border="0" usemap="#female_front" id="body_focus_female_front" name="body_focus_female_front"/>
+        <map name="female_front">
+          <area shape="poly" coords="150,250,158,320,179,306,184,270,187,234,182,205,174,202,163,215,150,233" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_legs.png');showOnly('articles','legs');"  />
+          <area shape="poly" coords="105,224,106,251,112,306,118,306,135,320,136,296,140,271,142,253,143,235,136,221,122,201,110,204" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_legs.png');showOnly('articles','legs');" />
+          <area shape="poly" coords="48,202,53,171,82,120,92,111,103,103,104,118,97,130,86,144,78,161,70,179,58,199" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_arms.png');showOnly('articles','arms');" />
+          <area shape="poly" coords="190,103,208,117,215,128,225,140,234,154,240,165,252,201,242,197,233,185,223,172,215,159,209,148,196,132,188,122" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_arms.png');showOnly('articles','arms');" />
+          <area shape="poly" coords="116,152,120,171,118,184,110,203,124,199,131,191,136,210,147,225,157,209,164,189,174,202,182,203,171,174,179,149,163,158,158,148,146,144,133,149,130,158" href="javascript:none();" alt="Пресс" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_stomach.png');showOnly('articles','core');" />
+          <area shape="poly" coords="109,103,107,117,112,139,130,139,141,134,148,127,155,136,167,139,180,138,182,121,184,112,183,99,170,90,148,94,137,93,120,92" href="javascript:none();" alt="Грудь" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_chest.png');showOnly('articles','chest');" />
+          <area shape="poly" coords="169,84,182,83,189,86,200,95,203,106,206,114,190,99,177,90" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_arms.png');showOnly('articles','arms');" />
+          <area shape="poly" coords="120,85,109,82,98,85,91,98,86,116,100,104,105,99,112,92" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_front','/image/body_focus/bfs_female_front_arms.png');showOnly('articles','arms');" />
+          <area shape="rect" coords="6,323,80,445" href="javascript:showOnly('body','female_back');swapImage('body_focus_female_back','/image/body_focus/bfs_female_back.png');showOnly('articles','default');" alt="Вид сзади" />   
+        </map>
+    </div>
+
+    <div id="female_back" name="body" style="display:none;">
+        <img src="/image/body_focus/bfs_female_back.png" alt="Female Back View" border="0" usemap="#female_back" id="body_focus_female_back" name="body_focus_female_back"/>
+        <map name="female_back">
+          <area shape="poly" coords="111,375,120,368,129,375,133,343,134,317,137,286,136,254,125,242,108,269,112,314,107,348" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_legs.png');showOnly('articles','legs');" />
+            <area shape="poly" coords="154,301,161,327,158,342,164,376,176,368,182,378,185,337,179,309,183,279,175,252,165,241,157,253" href="javascript:none();" alt="Ноги" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_legs.png');showOnly('articles','legs');" />
+            <area shape="poly" coords="228,199,218,171,210,152,201,137,189,117,191,100,206,111,217,132,228,153,236,181,241,208" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_arms.png');showOnly('articles','arms');"  />
+            <area shape="poly" coords="106,113,95,129,75,155,66,174,51,197,41,195,51,166,59,146,68,135,81,115,101,101" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_arms.png');showOnly('articles','arms');" />
+            <area shape="poly" coords="109,98,108,117,115,147,120,162,146,147,173,162,181,131,187,104,178,95,164,83,148,81,127,84" href="javascript:none();" alt="Спина" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_lats.png');showOnly('articles','back');"  />
+            <area shape="poly" coords="126,188,115,193,107,214,107,238,118,244,131,242,148,234,160,241,172,242,185,233,183,208,175,189,160,187,150,197,138,194" href="javascript:none();" alt="Ягодицы" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_glutes.png');showOnly('articles','glutes');"/>
+            <area shape="poly" coords="99,86,118,81,112,91,99,100,84,110,88,102" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_arms.png');showOnly('articles','arms');" />
+            <area shape="poly" coords="190,86,177,82,177,92,190,97,205,108,201,96" href="javascript:none();" alt="Руки" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_arms.png');showOnly('articles','arms');" />
+            <area shape="poly" coords="134,158,122,164,122,176,118,186,132,185,145,190,162,184,174,186,172,176,173,164,161,158,147,150" href="javascript:none();" alt="Поясница" onmouseover="swapImage('body_focus_female_back','/image/body_focus/bfs_female_back_lowerback.png');showOnly('articles','lowerback');" />
+            <area shape="rect" coords="11,315,79,445" href="javascript:showOnly('body','female_front');swapImage('body_focus_female_front','/image/body_focus/bfs_female_front.png');showOnly('articles','default');" alt="Вид спереди" />
+          </map>
+    </div>
+</div>
+<div class="body-focus-right">
+    <h1>Целевые мышцы</h1>
+    <div id="default" name="articles" style="display:block;">
+        <p>Некий текст по умолчанию</p>
+    </div>
+<?php foreach ($this->group_list as $group_item) { ?>
+    <div id="<?= $group_item->getGroupName() ?>" name="articles" style="display:none;">
+        <?= $group_item->getGroupDescription() ?>
+        <ul class="card-list">
+<?php foreach ($group_item->getArticleList() as $article_item) { ?>
+            <li>
+                <a href="<?= $article_item->getArticleUrl() ?>"><?= $article_item->getArticleTitle() ?></a>
+            </li>
+<?php } ?>
+        </ul>
+    </div>
+<?php } ?>
+</div>
