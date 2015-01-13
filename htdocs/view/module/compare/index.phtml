@@ -1,0 +1,42 @@
+<h1>Результаты сравнения</h1>
+<?php if (count($this->product_list)) { ?>
+<table class="compare-table">
+    <tr>
+        <td class="title">
+            Характеристики
+        </td>
+<?php   foreach ($this->product_list as $product) { ?>
+        <td>
+            <a href="<?= $product->getProductUrl() ?>"><?= $product->getProductArticle() ?> <?= $product->getProductTitle() ?></a>
+            <a href="/compare/delete/<?= $product->getId() ?>" onclick="return confirm( 'Вы уверены, что хотите удалить товар из сравнения?' )"><img src="/image/delete.png" align="absbottom"/></a><br/><br/>
+            <img src="<?= $product->getProductImage() . '/r/100/100' ?>" alt=""/>
+        </td>
+<?php   } ?>
+    </tr>
+<?php   foreach ($this->property_list as $property) { ?>
+    <tr>
+        <td <?php if ($property->getIsEqual()) { ?> class="equal"<?php } ?>>
+            <?= $property->getPropertyTitle() ?>
+        </td>
+<?php       foreach ($this->product_list as $product) { ?>
+        <td <?php if ($property->getIsEqual()) { ?> class="equal"<?php } ?>>
+                <?= $this->property_compare_list[$property->getId()][$product->getId()] ?>
+<?php			if ($this->property_compare_list[$property->getId()][$product->getId()]) { ?>
+                <?= $property->getPropertyUnit() ? ' ' . $property->getPropertyUnit() : '' ?>
+<?php			} ?>
+        </td>
+<?php       } ?>
+    </tr>
+<?php   } ?>
+</table>
+<br/>
+<?php if ($this->inRequest('show', 'diff')) { ?>
+<input type="button" href="/compare?show=all" value="Показать все свойства" style="margin-left: 70px; width: 250px;" />
+<?php } else { ?>
+<input type="button" href="/compare?show=diff" value="Показать только отличия" style="margin-left: 70px; width: 250px;" />
+<?php } ?>
+&nbsp;&nbsp;&nbsp;
+<input type="button" href="/compare/clear" confirm="Вы уверены, что хотите очистить резальтаты сравнения?" value="Очистить результаты сравнения" style="width: 250px;" />
+<?php } else { ?>
+<h2>Нет товаров для сравнения.</h2>
+<?php } ?>

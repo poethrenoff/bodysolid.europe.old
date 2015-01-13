@@ -1,4 +1,5 @@
-<?php $cart = Adminko\Cart::factory(); ?> 
+<?php $cart = Adminko\Cart::factory(); ?>
+<?php $compare = Adminko\Compare::factory(); ?>
 <div class="left">
     <div class="card-title">
 <?php if (!$this->client) { ?>
@@ -34,8 +35,8 @@
     <div class="card-cart<?php if ($cart->in($this->product->getId())) { ?> selected<?php } ?>">
         <a href="/cart" onclick="return buyItem(<?= $this->product->getId() ?>, this)">Купить</a>
     </div>
-    <div class="card-compare">
-        <a href="/compare">Сравнить</a>
+    <div class="card-compare<?php if ($compare->in($this->product->getId())) { ?> selected<?php } ?>">
+        <a href="/compare" onclick="return compareItem(<?= $this->product->getId() ?>, this)">Сравнить</a>
     </div>
 </div>
 <div class="right">

@@ -35,17 +35,6 @@ class CatalogueModel extends HierarchyModel
         );
     }
     
-//    
-//    // Возвращает список свойств каталога
-//    public function getPropertyList($only_filter = false)
-//    {
-//        $property_cond = array('property_catalogue' => $this->getId(), 'property_active' => 1);
-//        if ($only_filter) {
-//            $property_cond['property_filter'] = 1;
-//        }
-//        return Model::factory('property')->getList($property_cond, array('property_order' => 'asc'));
-//    }
-    
     // Возвращает URL каталога
     public function getCatalogueUrl()
     {

@@ -1,19 +1,14 @@
-function compareItem(id, compareLink, confirm){
-    var pid = $(compareLink).attr('pid');
-    var $compareLink = $(compareLink);
-    var $in_compare = $('.in-compare[pid=' + pid + ']');
-    
-    $.get('/compare/add/' + id, {'confirm': confirm}, function (response){
-        if (response.error) {
-            alert(response.error);
-        } else if (response.confirm && window.confirm(response.confirm)) {
-            compareItem(id, compareLink, true);
-        } else if (response.message) {
-            $('div.compare').html(response.message);
-            $compareLink.prop('disabled', true);
-            $in_compare.show('slow');
-        }
-    }, 'json');
+function compareItem(id, compareLink){
+    if (!$(compareLink).parent().hasClass('selected')) {
+        $.get('/compare/add/' + id, {}, function (response){
+            if (response.error) {
+                alert(response.error);
+            } else if (response.message) {
+                $(compareLink).parent().addClass('selected');
+                $('div.compare').html(response.message);
+            }
+        }, 'json');
+    }
     return false;
 }
 

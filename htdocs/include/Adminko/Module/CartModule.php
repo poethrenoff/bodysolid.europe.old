@@ -10,7 +10,7 @@ class CartModule extends Module
     protected function actionIndex()
     {
         $this->view->assign(Cart::factory());
-        $this->content = $this->view->fetch('module/cart/cart');
+        $this->content = $this->view->fetch('module/cart/index');
     }
 
     protected function actionInfo()

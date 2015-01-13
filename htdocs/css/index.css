@@ -734,3 +734,22 @@ ul.card-list {
 .cart-form table .cart_inc {
     background-image: url('/image/product-inc.png');
 }
+
+
+.compare-table {
+    border-collapse: collapse;
+}
+.compare-table td {
+    padding: 5px;
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #a0a0a0;
+}
+.compare-table td.title {
+    font-weight: bold;
+    width: 160px;
+}
+.compare-table td.equal {
+    color: #b0b0b0;
+}

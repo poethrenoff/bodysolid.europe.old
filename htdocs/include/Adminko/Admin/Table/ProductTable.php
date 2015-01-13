@@ -49,8 +49,9 @@ class ProductTable extends Table
                 select property.property_id, property.property_title, property.property_kind,
                     product_property.value, property.property_unit
                 from property
-                    left join product_property on product_property.property_id = property.property_id
-                order by property.property_order');
+                    left join product_property on product_property.property_id = property.property_id and
+                        product_property.product_id = :product_id
+                order by property.property_order', array('product_id' => $primary_field));
 
         $form_fields = array();
         foreach ($properties as $property_index => $property_value) {
@@ -101,7 +102,7 @@ class ProductTable extends Table
         $primary_field = $record[$this->primary_field];
 
         $properties = Db::selectAll('
-                select property.property_id, property.property_title, property.property_kind from property');
+            select property.property_id, property.property_title, property.property_kind from property');
 
         $property_values = init_array('property');
 
