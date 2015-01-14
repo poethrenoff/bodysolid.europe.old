@@ -77,7 +77,7 @@ class Metadata
                 'product_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'product_catalogue' => array('title' => 'Каталог', 'type' => 'table', 'table' => 'catalogue', 'errors' => array('require')),
                 'product_title' => array('title' => 'Название', 'type' => 'string', 'errors' => array('require')),
-                'product_article' => array('title' => 'Артикул', 'type' => 'string', 'main' => 1, 'errors' => array('require')),
+                'product_article' => array('title' => 'Артикул', 'type' => 'string', 'main' => 1),
                 'product_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
                 'product_short_description' => array('title' => 'Краткое описание', 'type' => 'text'),
                 'product_price_usd' => array('title' => 'Цена в долларах', 'type' => 'float'),
@@ -246,6 +246,97 @@ class Metadata
             'fields' => array(
                 'group_id' => array('title' => 'Группа мышц', 'type' => 'table', 'table' => 'article_group'),
                 'article_id' => array('title' => 'Упражнение', 'type' => 'table', 'table' => 'article'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Пользователи"
+         */
+        'client' => array(
+            'title' => 'Пользователи',
+            'no_add' => true, 'no_delete' => true,            
+            'fields' => array(
+                'client_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'client_title' => array('title' => 'Название компании', 'type' => 'string', 'main' => 1, 'errors' => 'require'),
+                'client_email' => array('title' => 'Email', 'type' => 'string',  'errors' => 'require|email'),
+                'client_password' => array('title' => 'Пароль', 'type' => 'password'),
+                'client_phone' => array('title' => 'Телефон', 'type' => 'string', 'errors' => 'require'),
+                'client_person' => array('title' => 'Контактное лицо', 'type' => 'string', 'errors' => 'require'),
+                'client_legal_address' => array('title' => 'Юридический адрес', 'type' => 'text', 'errors' => 'require'),
+                'client_actual_address' => array('title' => 'Фактический адрес', 'type' => 'text'),
+                'client_info' => array('title' => 'Дополнительная информация', 'type' => 'text'),
+                'client_status' => array('title' => 'Статус', 'type' => 'select', 'show' => 1, 'filter' => 1, 'values' => array(
+                        array('value' => 'new', 'title' => 'Новый'),
+                        array('value' => 'confirm', 'title' => 'Подтвержден'),
+                        array('value' => 'reject', 'title' => 'Отклонен')), 'show' => 1, 'errors' => array('require')),
+            ),
+        ),
+        
+        /**
+         * Таблица "Заказы"
+         */
+        'purchase' => array(
+            'title' => 'Заказы',
+            'no_add' => true, 'no_delete' => true,
+            'fields' => array(
+                'purchase_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'purchase_client' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client', 'main' => 1),
+                'purchase_person' => array('title' => 'Контактное лицо', 'type' => 'string'),
+                'purchase_email' => array('title' => 'Email', 'type' => 'string'),
+                'purchase_phone' => array('title' => 'Телефон', 'type' => 'string'),
+                'purchase_address' => array('title' => 'Адрес', 'type' => 'text'),
+                'purchase_shipping' => array('title' => 'Способ отгрузки', 'type' => 'text'),
+                'purchase_comment' => array('title' => 'Комментарий', 'type' => 'text'),
+                'purchase_date' => array('title' => 'Дата заказа', 'type' => 'datetime', 'show' => 1, 'sort' => 'desc', 'errors' => 'require'),
+                'purchase_sum' => array('title' => 'Сумма заказа', 'type' => 'float', 'show' => 1, 'errors' => 'require'),
+                'purchase_status' => array('title' => 'Статус заказа', 'type' => 'select', 'filter' => 1, 'values' => array(
+                        array('value' => 'new', 'title' => 'Новый'),
+                        array('value' => 'confirm', 'title' => 'Подтвержден'),
+                        array('value' => 'deliver', 'title' => 'В доставке'),
+                        array('value' => 'complete', 'title' => 'Выполнен'),
+                        array('value' => 'cancel', 'title' => 'Отменен')), 'show' => 1, 'errors' => 'require'),
+            ),
+            'links' => array(
+                'purchase_item' => array('table' => 'purchase_item', 'field' => 'item_purchase'),
+            )
+        ),
+        
+        /**
+         * Таблица "Позиции заказа"
+         */
+        'purchase_item' => array(
+            'title' => 'Позиции заказа',
+            'no_add' => true,
+            'fields' => array(
+                'item_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
+                'item_purchase' => array('title' => 'Заказ', 'type' => 'table', 'table' => 'purchase', 'errors' => array('require'), 'no_edit' => 1),
+                'item_product' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product', 'main' => 1, 'errors' => array('require')),
+                'item_price' => array('title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => array('require')),
+                'item_quantity' => array('title' => 'Количество', 'type' => 'int', 'show' => 1, 'errors' => array('require'))
+            )
+        ),
+        
+        /**
+         * Таблица "Избранное пользователей"
+         */
+        'client_product' => array(
+            'title' => 'Избранное пользователей',
+            'internal' => true,
+            'fields' => array(
+                'client_id' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client'),
+                'product_id' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Голоса пользователей"
+         */
+        'client_vote' => array(
+            'title' => 'Голоса пользователей',
+            'internal' => true,
+            'fields' => array(
+                'client_id' => array('title' => 'Пользователь', 'type' => 'table', 'table' => 'client'),
+                'product_id' => array('title' => 'Товар', 'type' => 'table', 'table' => 'product'),
             ),
         ),
         

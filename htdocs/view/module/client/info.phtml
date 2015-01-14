@@ -1,0 +1,9 @@
+<? if ($this->client) { ?>
+<a href="/client/logout" class="unlocked">Выйти</a>
+<span>/</span>
+<a href="/client">Личный кабинет</a>
+<? } else { ?>
+<a href="/client" class="locked">Вход</a>
+<span>/</span>
+<a href="/client/registration">Регистрация</a>
+<? } ?>

@@ -1,0 +1,30 @@
+<p>Заказ №<?= $this->purchase->getId() ?></p>
+
+<p>
+<?php $item_index = 1; ?>
+<?php foreach ($this->purchase->getItemList() as $purchase_item) { ?>
+<?php 	$product = Adminko\Model\Model::factory('product')->get($purchase_item->getItemProduct()); ?>
+<?= $item_index ?>. <?= $product->getProductArticle() ?> <?= $product->getProductTitle() ?> - <?= $purchase_item->getItemQuantity() ?> шт.<br/>
+<?php   $item_index++; ?>
+<?php } ?>
+</p>
+
+<p>Общая стоимость заказа: <?= $this->purchase->getPurchaseSum() ?> р.</p>
+
+<?php if ($this->client) { ?>
+<p>
+Название компании: <?= $this->client->getClientTitle() ?><br/><br/>
+Способ отгрузки: <?= $this->purchase->getPurchaseShipping() ?><br/>
+Комментарий: <?= $this->purchase->getPurchaseComment() ?>
+</p>
+<?php } else { ?>
+<p>
+Контактное лицо: <?= $this->purchase->getPurchasePerson() ?><br/>
+Email: <?= $this->purchase->getPurchaseEmail() ?><br/>
+Телефон: <?= $this->purchase->getPurchasePhone() ?><br/>
+Адрес: <?= $this->purchase->getPurchaseAddress() ?><br/>
+Комментарий: <?= $this->purchase->getPurchaseComment() ?>
+</p>
+<?php } ?>
+
+<p>Перейти к редактированию заказов <a href="http://bodysolid-europe.ru/admin/purchase">http://bodysolid-europe.ru/admin/purchase</a>.</p>

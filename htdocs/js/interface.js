@@ -22,6 +22,17 @@ function buyItem(id, buyLink){
     return false;
 }
 
+function likeItem(id, likeLink){
+    $.get('/client/like/' + id + '/', {}, function (response) {
+        if (response) {
+            $(likeLink).removeClass('like').addClass('unlike').attr('title', 'Удалить из Избранного');
+        } else {
+            $(likeLink).removeClass('unlike').addClass('like').attr('title', 'Добавить в Избранное');
+        }
+    }, 'json');
+    return false;
+}
+
 function incItem(incLink){
     return shiftItem(incLink, +1);
 }
@@ -63,11 +74,19 @@ function updateCart(){
         totalSum += qnt * price;
     });
     
-    var $totalRow = $('form.cart-form').find('tr:last');
+    var $totalRow = $('form.cart-form').find('tr.total');
     var $totalQntCell = $totalRow.find('td').eq(2);
     var $totalSumCell = $totalRow.find('td').eq(3);
     $totalQntCell.html(totalQnt);
     $totalSumCell.html(totalSum);
+    
+    var $discountInput = $('form.cart-form').find('input[name^=discount]');
+    var discount = parseFloat($discountInput.val());
+    if (!isNaN(discount)) {
+        var $finalRow = $('form.cart-form').find('tr.final');
+        var $finalSumCell = $finalRow.find('td').eq(2);
+        $finalSumCell.html(Math.round(totalSum * discount));
+    }
     
     $('form.cart-form').ajaxSubmit(function(response){
         $(".cart").html(response);
@@ -125,6 +144,25 @@ $(function () {
     $('input[href]').bind('click', function(e) {
         if (!$(this).attr('confirm') || confirm($(this).attr('confirm'))) {
             location.href = $(this).attr('href');
+        }
+    });
+    
+    $('.vote .star').mouseenter(function(){
+        if ($('.vote').hasClass('enabled')) {
+            setMark($(this).attr('mark'));
+        }
+    }).click(function(){
+        if ($('.vote').hasClass('enabled')) {
+            $.post('/product/vote/' + $(this).attr('id'), {mark: $(this).attr('mark')}, function(data){
+                var rating = Math.round(data.rating);
+                $('.vote').attr('rating', rating);
+                $('.vote').mouseleave().removeClass('enabled');
+            }, 'json');
+        }
+    });
+    $('.vote').mouseleave(function(){
+        if ($('.vote').hasClass('enabled')) {
+            setMark($(this).attr('rating'));
         }
     });    
 });

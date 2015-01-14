@@ -1,0 +1,7 @@
+<?= Adminko\View::block('module/client/menu') ?>
+<div class="catalogue">
+<?php foreach ($this->client->getClientProductList() as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+    <div class="clear"></div>
+</div>

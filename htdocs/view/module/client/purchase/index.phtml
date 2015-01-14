@@ -1,0 +1,19 @@
+<?= Adminko\View::block('module/client/menu') ?>
+
+<?php $purchase_index = 1; ?>
+<?php foreach ($this->purchase_list as $purchase) { ?>
+<div class="purchase <?php if ($purchase_index++ % 2) { ?>selected<?php } ?>">
+    <p><b><?= Adminko\Date::get($purchase->getPurchaseDate(), 'long') ?></b></p>
+    <ol>
+<?php foreach ($purchase->getItemList() as $purchase_item) { ?>
+<?php 	$product = Adminko\Model\Model::factory('product')->get($purchase_item->getItemProduct()); ?>
+        <li><?= $product->getProductArticle() ?> <?= $product->getProductTitle() ?> - <?= $purchase_item->getItemQuantity() ?> шт.</li>
+<?php   $item_index++; ?>
+<?php } ?>
+    </ol>
+    <p class="total">Общая стоимость заказа: <b><?= number_format($purchase->getPurchaseSum(), 0, ',', ' ') ?> р.</b></p>
+    <p class="total">Статус заказа: <b><?= $purchase->getPurchaseStatusTitle() ?></b></p>
+</div>
+<?php } ?>
+
+<?= $this->pages ?>

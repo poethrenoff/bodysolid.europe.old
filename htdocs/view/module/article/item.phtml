@@ -9,7 +9,9 @@
 </div>
 <p style="text-align: right"><a href="<?= $this->getArticleUrl() ?>">Вернуться к статье</a></p>
 <?php } else { ?>
+<div class="noselect">
 <?= $this->getArticleText() ?>
+</div>
 <div class="catalogue">
 <?php foreach ($this->getProductList(4) as $product_item) { ?>
 <?= Adminko\View::block('module/product/product', $product_item) ?>

@@ -3,6 +3,11 @@
  * Пользовательские правила маршрутизации
  */
 $routes = array(
+    // Путь к голосованию
+    '/product/vote/@id' => array(
+        'controller' => 'product',
+        'action' => 'vote',
+    ),
     // Путь к каталогу
     '/product/@catalogue' => array(
         'controller' => 'product',

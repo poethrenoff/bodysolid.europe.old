@@ -1,0 +1,39 @@
+<p>Спасибо Вам за заказ в интернет-магазине Bodysolid-Europe.ru!</p>
+
+<p>Ваш заказ №<?= $this->purchase->getId() ?>:</p>
+
+<p>
+<?php $item_index = 1; ?>
+<?php foreach ($this->purchase->getItemList() as $purchase_item) { ?>
+<?php 	$product = Adminko\Model\Model::factory('product')->get($purchase_item->getItemProduct()); ?>
+<?= $item_index ?>. <?= $product->getProductArticle() ?> <?= $product->getProductTitle() ?> - <?= $purchase_item->getItemQuantity() ?> шт.<br/>
+<?php   $item_index++; ?>
+<?php } ?>
+</p>
+
+<p>Общая стоимость заказа: <?= $this->purchase->getPurchaseSum() ?> р.</p>
+
+<?php if ($this->client) { ?>
+<p>
+Вы указали следующие контактные данные:<br/>
+Способ отгрузки: <?= $this->purchase->getPurchaseShipping() ?><br/>
+Комментарий: <?= $this->purchase->getPurchaseComment() ?>
+</p>
+<?php } else { ?>
+<p>
+Вы указали следующие контактные данные:<br/>
+Контактное лицо: <?= $this->purchase->getPurchasePerson() ?><br/>
+Email: <?= $this->purchase->getPurchaseEmail() ?><br/>
+Телефон: <?= $this->purchase->getPurchasePhone() ?><br/>
+Адрес: <?= $this->purchase->getPurchaseAddress() ?><br/>
+Комментарий: <?= $this->purchase->getPurchaseComment() ?>
+</p>
+<?php } ?>
+
+<p>В ближайшее время менеджер свяжется с Вами для уточнения всех деталей.</p>
+
+<?php if ($this->client) { ?>
+<p>Состояние Вашего заказа Вы можете посмотреть, перейдя по ссылке <a href="http://bodysolid-europe.ru/client/purchase">http://bodysolid-europe.ru/client/purchase</a>.</p>
+<?php } ?>
+
+<p>C уважением<br/>Bodysolid-Europe.ru</p>

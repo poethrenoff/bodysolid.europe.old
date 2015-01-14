@@ -1,0 +1,23 @@
+<h1>Авторизация</h1>
+<form action="<?= Adminko\System::selfUrl() ?>" method="post">
+    <label>E-mail <span class="require">*</span></label>
+    <input type="text" value="<?= $this->escape($this->fromRequest('client_email')) ?>" name="client_email" />
+<? if ($this->error['client_email']) { ?>
+    <span class="error"><?= $this->error['client_email'] ?></span>
+<? } ?>
+    <br/>
+    <label>Пароль <span class="require">*</span></label>
+    <input type="password" value="<?= $this->escape($this->fromRequest('client_password')) ?>" name="client_password" />
+<? if ($this->error['client_password']) { ?>
+    <span class="error"><?= $this->error['client_password'] ?></span>
+<? } ?>
+    <br/>
+    <label>Запомнить меня</label>
+    <input type="checkbox" value="on" name="client_remember" <?php if ($this->inRequest('client_remember')) { ?> checked="checked"<?php } ?> />
+    <br/>
+    <input type="submit" value="Войти" />
+</form>
+<br/>
+<a href="<?= Adminko\System::urlFor(array('controller' => 'client', 'action' => 'registration')) ?>">Регистрация</a>
+&nbsp;&nbsp;&nbsp;
+<a href="<?= Adminko\System::urlFor(array('controller' => 'client', 'action' => 'recovery')) ?>">Забыли пароль?</a>

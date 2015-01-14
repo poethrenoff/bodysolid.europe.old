@@ -84,11 +84,11 @@
 </div>
 <div class="body-focus-right">
     <h1>Целевые мышцы</h1>
-    <div id="default" name="articles" style="display:block;">
+    <div id="default" name="articles" style="display:block;" class="noselect">
         <p>Некий текст по умолчанию</p>
     </div>
 <?php foreach ($this->group_list as $group_item) { ?>
-    <div id="<?= $group_item->getGroupName() ?>" name="articles" style="display:none;">
+    <div id="<?= $group_item->getGroupName() ?>" name="articles" style="display:none;" class="noselect">
         <?= $group_item->getGroupDescription() ?>
         <ul class="card-list">
 <?php foreach ($group_item->getArticleList() as $article_item) { ?>

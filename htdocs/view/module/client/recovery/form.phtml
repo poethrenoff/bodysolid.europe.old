@@ -1,0 +1,14 @@
+<h1>Восстановление пароля</h1>
+<form action="<?= Adminko\System::selfUrl() ?>" method="post">
+    <label>E-mail <span class="require">*</span></label>
+    <input type="text" value="<?= $this->escape($this->fromRequest('client_email')) ?>" name="client_email" />
+<?php if ($this->error['client_email']) { ?>
+    <span class="error"><?= $this->error['client_email'] ?></span>
+<?php } ?>
+    <br/>
+    <input type="submit" value="Восстановить" />
+</form>
+<br/>
+<a href="/client">Войти</a>
+&nbsp;&nbsp;&nbsp;
+<a href="/client/registration">Регистрация</a>

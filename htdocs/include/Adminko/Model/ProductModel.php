@@ -114,6 +114,26 @@ class ProductModel extends Model
         );        
         return $this->getBatch($records);
     }
+                
+    // Возвращает список товаров пользователя
+    public function getByClient($client)
+    {
+        $records = Db::selectAll('
+            select
+                product.*
+            from 
+                product
+                inner join catalogue on product.product_catalogue = catalogue.catalogue_id
+                inner join client_product on client_product.product_id = product.product_id
+            where
+                client_product.client_id = :client_id and
+                product_active = :product_active and catalogue_active = :catalogue_active
+            order by
+                product_order asc',
+            array('client_id' => $client->getId(), 'product_active' => 1, 'catalogue_active' => 1)
+        );
+        return $this->getBatch($records);
+    }
     
     // Поисковый запрос
     public function getSearchResult($search_value)
@@ -181,5 +201,17 @@ class ProductModel extends Model
             Metadata::$objects['product']['fields']['product_state']['values'], 'value'
         );
         return $state_list[$this->getProductState()]['title'];
+    }
+    
+    // Добавляет оценку товару
+    public function addMark($mark)
+    {
+        $voters = $this->getProductVoters();
+        $rating = $this->getProductRating();
+        
+        $this->setProductVoters($voters + 1);
+        $this->setProductRating(($rating * $voters + $mark) / ($voters + 1));
+        
+        return $this;
     }
 }

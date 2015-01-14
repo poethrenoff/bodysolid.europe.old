@@ -10,6 +10,8 @@ class CartModule extends Module
     protected function actionIndex()
     {
         $this->view->assign(Cart::factory());
+        $this->view->assign('client', ClientModule::getInfo());
+        $this->view->assign('discount', get_preference('discount'));
         $this->content = $this->view->fetch('module/cart/index');
     }
 

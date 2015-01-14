@@ -1,6 +1,6 @@
-<h1>Корзина</h1>
-<?php if ($this->getQuantity()) { ?>
-<form class="cart-form" method="post" action="/cart/save">
+<h1>Оформление заказа</h1>
+<?php if ($this->cart->getQuantity()) { ?>
+<div class="cart-form">
     <table>
         <tr class="title">
             <td class="title name">
@@ -15,11 +15,8 @@
             <td class="title cost">
                 Стоимость
             </td>
-            <td class="title delete">
-                Удалить
-            </td>
         </tr>
-<?php 		foreach ($this->get() as $item) { ?>
+<?php 		foreach ($this->cart->get() as $item) { ?>
 <?php 			$product = Adminko\Model\Model::factory('product')->get($item->id); ?>
         <tr>
             <td class="name">
@@ -34,18 +31,10 @@
                 <?= $item->price ?>
             </td>
             <td class="quantity">
-                <input type="hidden" value="<?= $item->price ?>" name="price[<?= $product->getId() ?>]"/>
-                <input type="hidden" value="<?= $item->quantity ?>" name="quantity[<?= $product->getId() ?>]"/>
-                
-                <a href="" class="cart_dec" onclick="return decItem(this)"></a>
-                <span class="quantity"><?= $item->quantity ?></span>
-                <a href="" class="cart_inc" onclick="return incItem(this)"></a>
+                <?= $item->quantity ?>
             </td>
             <td class="cost">
                 <?= $item->quantity * $item->price ?>
-            </td>
-            <td class="delete">
-                <a href="/cart/delete/<?= $product->getId() ?>" onclick="return confirm('Вы уверены, что хотите удалить товар?')"><img src="/image/delete.png" /></a>
             </td>
         </tr>
 <?php 		} ?>
@@ -57,10 +46,10 @@
                 Итого:
             </td>
             <td class="total quantity">
-                <?= $this->getQuantity() ?>
+                <?= $this->cart->getQuantity() ?>
             </td>
             <td class="total cost">
-                <?= $this->getSum() ?>
+                <?= $this->cart->getSum() ?>
             </td>
             <td class="total delete">
                 &nbsp;
@@ -89,7 +78,7 @@
                 С учетом скидки:
             </td>
             <td class="total cost">
-                <?= round($this->getSum() * $this->discount) ?>
+                <?= round($this->cart->getSum() * $this->discount) ?>
             </td>
             <td class="total delete">
                 &nbsp;
@@ -97,13 +86,50 @@
         </tr>
 <?php } ?>
     </table>
-    <br/>
-<?php if ($this->client) { ?>
-    <input type="hidden" name="discount" value="<?= $this->discount ?>"/>
+</div>
+
+<form action="<?= Adminko\System::selfUrl() ?>" method="post">
+<?php   if (!$this->client) { ?>
+    <label>Контактное лицо <span class="require">*</span></label>
+    <input type="text" value="<?= $this->escape($this->fromRequest('purchase_person')) ?>" name="purchase_person" />
+<?php if ($this->error['purchase_person']) { ?>
+    <span class="error"><?= $this->error['purchase_person'] ?></span>
 <?php } ?>
-    <input type="button" href="javascript: history.back()" value="Продолжить покупки" style="margin-left: 70px;" />
-    <input type="button" href="/cart/clear" confirm="Вы уверены, что хотите очистить корзину?" value="Очистить корзину" />
-    <input type="button" href="/purchase" value="Оформить заказ" style="float: right;" />
+    <br/>
+    <label>E-mail <span class="require">*</span></label>
+    <input type="text" value="<?= $this->escape($this->fromRequest('purchase_email')) ?>" name="purchase_email" />
+<?php if ($this->error['purchase_email']) { ?>
+    <span class="error"><?= $this->error['purchase_email'] ?></span>
+<?php } ?>
+    <br/>
+    <label>Телефон <span class="require">*</span></label>
+    <input type="text" value="<?= $this->escape($this->fromRequest('purchase_phone')) ?>" name="purchase_phone" />
+<?php if ($this->error['purchase_phone']) { ?>
+    <span class="error"><?= $this->error['purchase_phone'] ?></span>
+<?php } ?>
+    <br/>
+    <label>Адрес доставки <span class="require">*</span></label><br/>
+    <textarea name="purchase_address"><?= $this->escape($this->fromRequest('purchase_address')) ?></textarea>
+<?php if ($this->error['purchase_address']) { ?>
+    <span class="error"><?= $this->error['purchase_address_text'] ?></span>
+<?php } ?>
+    <br/>
+<?php   } else { ?>
+    <label>Способ отгрузки</label><br/>
+    <textarea name="purchase_shipping"><?= $this->escape($this->fromRequest('purchase_shipping')) ?></textarea>
+<?php if ($this->error['purchase_shipping']) { ?>
+    <span class="error"><?= $this->error['purchase_shipping'] ?></span>
+<?php } ?>
+    <br/>
+<?php   } ?>
+    <label>Комментарий</label><br/>
+    <textarea name="purchase_comment"><?= $this->escape($this->fromRequest('purchase_comment')) ?></textarea>
+<?php if ($this->error['purchase_comment']) { ?>
+    <span class="error"><?= $this->error['purchase_comment'] ?></span>
+<?php } ?>
+    <br/>
+    <input type="button" href="/cart" value="Изменить заказ" />
+    <input type="submit" value="Отправить" />
 </form>
 <?php } else { ?>
 <h2>Ваша корзина пуста.</h2>

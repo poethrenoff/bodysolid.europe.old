@@ -1,0 +1,6 @@
+<h1>Личный кабинет</h1>
+<div class="client_menu">
+    <a href="/client/purchase"<?php if (Adminko\System::action() == 'purchase') { ?> class="selected"<?php } ?>>Ваши заказы</a>
+    <a href="/client/profile"<?php if (Adminko\System::action() == 'profile') { ?> class="selected"<?php } ?>>Ваши настройки</a>
+    <a href="/client/product"<?php if (Adminko\System::action() == 'product') { ?> class="selected"<?php } ?>>Ваши товары</a>
+</div>

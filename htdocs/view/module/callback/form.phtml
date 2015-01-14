@@ -11,13 +11,13 @@
 
     <form id="callback" method="post" action="<?= Adminko\System::urlFor(array('controller' => 'callback')) ?>">
         <label>Ваше имя <span class="require">*</span></label>
-        <input type="text" class="text" name="callback_person" value="<?= $this->escape($this->fromRequest('callback_person')) ?>" />
+        <input type="text" name="callback_person" value="<?= $this->escape($this->fromRequest('callback_person')) ?>" />
     <?php if ($this->error['callback_person']) { ?>
         <span class="error"><?= $this->error['callback_person'] ?></span>
     <?php } ?>
         <br/>
         <label>Телефон <span class="require">*</span></label>
-        <input type="text" class="text" name="callback_phone" value="<?= $this->escape($this->fromRequest('callback_phone')) ?>" />
+        <input type="text" name="callback_phone" value="<?= $this->escape($this->fromRequest('callback_phone')) ?>" />
     <?php if ($this->error['callback_phone']) { ?>
         <span class="error"><?= $this->error['callback_phone'] ?></span>
     <?php } ?>
@@ -28,6 +28,6 @@
         <span class="error"><?= $this->error['callback_comment'] ?></span>
     <?php } ?>
         <br/>
-        <input type="submit" class="button" value="Заказать звонок" />
+        <input type="submit" value="Заказать звонок" />
     </form>
 </div>

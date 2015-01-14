@@ -17,23 +17,49 @@ a:hover {
     clear:both;
 }
 
-input[type="text"] {
+
+form label {
+    display: inline-block;
+    width: 150px;
+    margin-top: 10px;
+}
+span.require, span.error {
+    color: #a32c14;
+}
+
+input[type="text"], input[type="password"] {
     font-size: 12px;
-    border: 1px solid #a0a0a0;
+    font-family: Tahoma, Geneva, sans-serif;
     width: 220px;
+    height: 21px;
+    padding: 0px 5px;
+    border: 1px solid #a0a0a0;
 }
 
 input[type="button"], input[type="submit"] {
     color: white;
     font-size: 12px;
+    font-family: Tahoma, Geneva, sans-serif;
     background: #a32c14;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 5px 10px;
     text-align: center;
     border: none;
     width: 180px;
-    cursor: pointer; 
+    height: 21px;
+    padding: 0px 10px;
+    margin-top: 7px;
+    margin-left: 153px;
+    cursor: pointer;
+}
+
+textarea {
+    font-size: 12px;
+    font-family: Tahoma, Geneva, sans-serif;
+    width: 373px;
+    height: 50px;
+    padding: 0px 5px;
+    border: 1px solid #a0a0a0;
 }
 
 .wrapper {
@@ -350,6 +376,7 @@ input[type="button"], input[type="submit"] {
             background: url('/image/search.png');
             cursor: pointer;
             display: inline;
+            margin: 0px;
         }
     .footer .copyright {
         float: right;
@@ -653,7 +680,7 @@ ul.card-list {
 
 
 .modal-form {
-    width: 360px;
+    width: 390px;
     height: 280px;
 }
 
@@ -727,10 +754,20 @@ ul.card-list {
 .cart-form table td.title, .cart-form table td.total.price {
     font-size: 14px;
     font-weight: bold;
+} 
+.cart-form table td.total.price {
+    border: none;
 }
+    .cart-form table td.total.price {
+        text-align: left;
+    }
 .cart-form table td.total.quantity, .cart-form table td.total.cost {
+    border: none;
     font-weight: bold;
 }
+    .cart-form table tr.discount td {
+        color: #a32c14;
+    }
 .cart-form table td.total.name, .cart-form table td.total.delete {
     border: none;
 }        
@@ -797,3 +834,46 @@ ul.card-list {
     .price-list-table tr.odd {
         background: #f0f0f0;
     }
+
+.client_menu {
+    text-align: right;
+    margin-bottom: 10px;
+}
+    .client_menu a {
+        font-size: 14px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        color: #000000;
+        margin-left: 20px;
+        text-decoration: none;
+    }
+    .client_menu a.selected {
+        color: #a32c14;
+    }
+
+div.purchase {
+    padding: 10px;
+}
+    div p {
+        margin: 0px 0px 5px 0px;
+    }
+    div p.total {
+        color: #b32529;
+    }
+        div p.total b {
+            color: #b32529;
+        }
+    div p.default {
+        margin: 5px 0px 5px 0px;
+        color: #4d4d4d;
+    }
+        div p.default a {
+            color: #b32529;
+        }
+    div.purchase.selected {
+        background: #ececec;
+    }
+
+.pages {
+    padding: 10px;
+    text-align: right;
+}

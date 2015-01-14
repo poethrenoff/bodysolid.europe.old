@@ -2,14 +2,14 @@
 <?php $compare = Adminko\Compare::factory(); ?>
 <div class="left">
     <div class="card-title">
-<?php if (!$this->client) { ?>
+<?php if ($this->client) { ?>
         <div class="favourite">
-            <a href="" class="like"></a>
+            <a href="" onclick="return likeItem(<?= $this->product->getId() ?>, this)"<?php if ($this->client->isLike($this->product)) { ?> class="unlike" title="Удалить из Избранного"<?php } else { ?> class="like" title="Добавить в Избранное"<?php } ?>></a>
         </div>
 <?php } ?>
         <h1><?= $this->product->getProductArticle() ?></h1>
         <h2><?= $this->product->getProductTitle() ?></h2>
-<?php if (!$this->client) { ?>
+<?php if ($this->client) { ?>
         <p class="status"><?= $this->product->getProductStateTitle() ?></p>
 <?php } ?>
     </div>
@@ -18,16 +18,15 @@
             <img src="<?= $this->product->getProductImage() ?>/r/180/180" />
         </a>
     </div>
-<?php if (!$this->client) { ?>
+<?php if ($this->client) { ?>
     <div class="card-rating">
-        <div class="vote">
-            <div class="star active"></div>
-            <div class="star active"></div>
-            <div class="star active"></div>
-            <div class="star"></div>
-            <div class="star"></div>
+<?php $rating = round($this->product->getProductRating()); ?>
+        <div class="vote<?php if (!$this->client->isVote($this->product)) { ?> enabled<?php } ?>" rating="<?= $rating ?>">
+<?php for ($i = 1; $i <= 5; $i++) { ?>
+            <div class="star<? if ($rating >= $i) { ?> active<? } ?>" id="<?= $this->product->getId() ?>" mark="<?= $i ?>"></div>
+<?php } ?>
         </div>
-    </div>
+  </div>
 <?php } ?>
     <div class="card-price">
         <?= number_format($this->product->getProductPrice(), 0, '.', ' ') ?> р.

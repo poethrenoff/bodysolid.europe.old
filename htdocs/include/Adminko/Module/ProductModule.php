@@ -42,7 +42,22 @@ class ProductModule extends Module
         $product = $this->getProduct(System::id());
         
         $this->view->assign('product', $product);
+        $this->view->assign('client', ClientModule::getInfo());
         $this->content = $this->view->fetch('module/product/item');
+    }
+    
+    protected function actionVote()
+    {
+        $product = $this->getProduct(System::id());
+        
+        if (($client = ClientModule::getInfo()) && !$client->isVote($product)) {
+            $product->addMark(min(5, max(1, init_string('mark'))))->save();
+            $client->setVote($product);
+        }
+        
+        $this->content = json_encode(
+            array('rating' => $product->getProductRating())
+        );
     }
 
     /**
