@@ -159,7 +159,7 @@ class ProductModel extends Model
                 inner join catalogue on product.product_catalogue = catalogue.catalogue_id
             where (' . join(' or ', $filter_clause) . ') and
                 product_active = :product_active and catalogue_active = :catalogue_active
-            orde$r by
+            order by
                 product_order asc',
             $filter_binds + array('product_active' => 1, 'catalogue_active' => 1)
         );

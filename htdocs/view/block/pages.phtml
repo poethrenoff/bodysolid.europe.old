@@ -1,6 +1,6 @@
+<?php if( $this->count > $this->by_page ) { ?>
 <div class="pages">
     Страницы:
-<?php if( $this->count > $this->by_page ) { ?>
 <?php 		foreach( $this->pages as $page ) { ?>
 <?php 			if( $page['link'] ) { ?>
 <a href="<?= $this->escape( $page['link'] ) ?>"><?php if ( $page['number'] ) { ?><?= $page['number'] ?><?php } else { ?>&hellip;<?php } ?></a>
@@ -8,5 +8,5 @@
 <b><?= $page['number'] ?></b>
 <?php 			} ?>
 <?php		} ?>
-<?php } ?>
 </div>
+<?php } ?>
