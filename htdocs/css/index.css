@@ -451,9 +451,10 @@ h3 {
 
 .catalogue .product {
     float: left;
-    width: 200px;
+    width: 210px;
     height: 220px;
     padding: 10px;
+    margin-bottom: 15px;
 }
     .catalogue .product .product-image {
         text-align: center;
@@ -477,7 +478,7 @@ h3 {
             text-decoration: none;
         }
     .catalogue .product .product-title {
-        width: 200px;
+        width: 210px;
         height: 30px;
         margin-top: 10px;
     }
