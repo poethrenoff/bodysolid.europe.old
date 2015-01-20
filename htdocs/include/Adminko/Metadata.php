@@ -213,12 +213,8 @@ class Metadata
                 'group_name' => array( 'title' => 'Ссылка', 'type' => 'string', 'group' => array(), 'errors' => array('require')),
                 'group_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
             ),
-            'relations' => array(
-                'article' => array( 'secondary_table' => 'article', 'relation_table' => 'article_group_link',
-                    'primary_field' => 'group_id', 'secondary_field' => 'article_id', 'title' => 'Статьи' ),
-            ),
         ),
-                
+        
         /**
          * Таблица "Упражнения"
          */
@@ -234,6 +230,8 @@ class Metadata
             'relations' => array(
                 'product' => array( 'secondary_table' => 'product', 'relation_table' => 'product_article',
                     'primary_field' => 'article_id', 'secondary_field' => 'product_id', 'title' => 'Товары' ),
+                'article_group' => array( 'secondary_table' => 'article_group', 'relation_table' => 'article_group_link',
+                    'primary_field' => 'article_id', 'secondary_field' => 'group_id', 'title' => 'Группы мыщц' ),
             ),
         ),
         
