@@ -1,4 +1,4 @@
-<h1>Целевые мышцы</h1>
+<h1>Упражнения</h1>
 <h2><?= $this->getArticleTitle() ?></h2>
 <?php if ($this->inRequest('all')) { ?>
 <div class="catalogue">
@@ -12,6 +12,7 @@
 <div class="noselect">
 <?= $this->getArticleText() ?>
 </div>
+<h2>Подходящие тренажеры</h2>
 <div class="catalogue">
 <?php foreach ($this->getProductList(4) as $product_item) { ?>
 <?= Adminko\View::block('module/product/product', $product_item) ?>
