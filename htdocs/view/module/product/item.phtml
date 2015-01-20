@@ -60,6 +60,14 @@
 <?php       } ?>
 <?php   } ?>
             </ul>
+            <h2>Позволяет выполнять упражнения</h2>
+            <ul class="card-list">
+<?php   foreach ($this->product->getArticleList() as $article) { ?>
+                <li>
+                    <a href="<?= $article->getArticleUrl() ?>"><?= $article->getArticleTitle() ?></a>
+                </li>
+<?php   } ?>
+            </ul>
         </div>
         <div id="card-content-photoes" style="display: none">
             <script type="text/javascript" src="/js/colorbox/jquery.colorbox-min.js" ></script>

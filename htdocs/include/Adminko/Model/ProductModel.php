@@ -114,7 +114,7 @@ class ProductModel extends Model
         );        
         return $this->getBatch($records);
     }
-                
+    
     // Возвращает список товаров пользователя
     public function getByClient($client)
     {
@@ -214,4 +214,11 @@ class ProductModel extends Model
         
         return $this;
     }
+    
+    // Возвращает связанные упражнения
+    public function getArticleList($limit = null)
+    {
+        return Model::factory('article')->getByProduct($this, $limit);
+    }
+
 }

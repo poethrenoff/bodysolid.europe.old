@@ -809,6 +809,13 @@ ul.card-list {
 .compare-table td.equal {
     color: #b0b0b0;
 }
+.compare-table td.article {
+    text-align: left;
+}
+    .compare-table td.article a {
+        display: block;
+        margin-bottom: 5px;
+    }
 
 .price-list-table {
     width: 100%;

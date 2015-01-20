@@ -42,6 +42,25 @@ class ArticleModel extends Model
             'article' => $this->getArticleName(), 'action' => $action));
     }
     
+    // Возвращает статьи по товару
+    public function getByProduct($product, $limit = null)
+    {
+        $records = Db::selectAll('
+            select
+                article.*
+            from 
+                article
+                inner join product_article on product_article.article_id = article.article_id
+            where
+                product_article.product_id = :product_id
+            order by
+                article_order asc
+            ' . ($limit ? ('limit ' . $limit) : ''),
+            array('product_id' => $product->getId())
+        );        
+        return $this->getBatch($records);
+    }
+    
     // Возвращает связанные товары
     public function getProductList($limit = null)
     {
