@@ -93,13 +93,27 @@ class Metadata
                 'product_active' => array('title' => 'Видимость', 'type' => 'active'),
             ),
             'links' => array(
-                'picture' => array('table' => 'picture', 'field' => 'picture_product'),
-                'video' => array('table' => 'video', 'field' => 'video_product'),
-                'download' => array('table' => 'download', 'field' => 'download_product'),
+                'picture' => array('table' => 'picture', 'field' => 'picture_product', 'ondelete' => 'cascade'),
+                'video' => array('table' => 'video', 'field' => 'video_product', 'ondelete' => 'cascade'),
+                'download' => array('table' => 'download', 'field' => 'download_product', 'ondelete' => 'cascade'),
             ),
             'relations' => array(
                 'article' => array( 'secondary_table' => 'article', 'relation_table' => 'product_article',
                     'primary_field' => 'product_id', 'secondary_field' => 'article_id', 'title' => 'Статьи' ),
+                'link' => array( 'secondary_table' => 'product', 'relation_table' => 'product_link',
+                    'primary_field' => 'product_id', 'secondary_field' => 'link_product_id', 'title' => 'Опции' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Опции"
+         */
+        'product_link' => array(
+            'title' => 'Опции',
+            'internal' => true,
+            'fields' => array(
+                'product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
+                'link_product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
             ),
         ),
         

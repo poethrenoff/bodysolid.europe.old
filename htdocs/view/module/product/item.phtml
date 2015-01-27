@@ -14,9 +14,13 @@
 <?php } ?>
     </div>
     <div class="card-image">
-        <a href="<?= $this->product->getProductUrl() ?>">
-            <img src="<?= $this->product->getProductImage() ?>/r/180/180" />
-        </a>
+        <script type="text/javascript" src="/js/jquery.elevateZoom-3.0.8.min.js" ></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#zoom").elevateZoom({zoomWindowWidth: 500, zoomWindowHeight: 330});
+            });
+        </script>
+        <img id="zoom" src="<?= $this->product->getProductImage() ?>/r/180/180" data-zoom-image="<?= $this->product->getProductImage() . '/r/1200/1200' ?>" />
     </div>
 <?php if ($this->client) { ?>
     <div class="card-rating">
@@ -44,6 +48,7 @@
         <a href="" class="card-tab-properties" for="card-content-properties">Свойства</a>
         <a href="" class="card-tab-photoes" for="card-content-photoes">Фото</a>
         <a href="" class="card-tab-video" for="card-content-video">Видео</a>
+        <a href="" class="card-tab-options" for="card-content-options">Опции</a>
         <a href="" class="card-tab-files" for="card-content-files">Файлы</a>
     </div>
     <div class="card-content">
@@ -92,6 +97,14 @@
 <?php foreach ($this->product->getVideoList() as $video) { ?>
             <?= $video->getVideoCode(); ?>
 <?php } ?>
+        </div>
+        <div id="card-content-options" style="display: none">
+            <div class="catalogue">
+<?php foreach ($this->product->getOptionsList() as $product_item) { ?>
+<?= Adminko\View::block('module/product/product', $product_item) ?>
+<?php } ?>
+                <div class="clear"></div>
+            </div>
         </div>
         <div id="card-content-files" style="display: none">
             <ul class="card-list">

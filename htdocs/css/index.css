@@ -229,12 +229,24 @@ textarea {
     margin-top: 100px;
     background: url('/image/content_bg.png');
 }
+    #index .content {
+        margin-top: 480px;
+    }
     .content .left {
         float: left;
         width: 200px;
     }
+        #index .content .left {
+            width: 560px;
+        }
     .content .right {
         padding-left: 225px;
+    }
+        #index .content .right {
+            padding-left: 565px;
+        }
+    .content .bottom {
+        clear: both;
     }
     .content .body-focus-left {
         float: left;
@@ -399,13 +411,13 @@ textarea {
         margin-top: 10px;
     }
         .teaser-slideshow img {
-            width: 180px;
-            height: 400px;
+            width: 540px;
+            height: 180px;
         }
         
         .teaser-pager {
             position: absolute;
-            width: 170px;
+            width: 540px;
             margin-top: -25px;
             text-align: right;
         }
@@ -443,9 +455,9 @@ h3 {
     font-weight: bold;
     text-transform: uppercase;
 }
-.catalogue h2 {
-    text-align: right;
+.catalogue h2, #index h2 {
     font-weight: normal;
+    text-align: right;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -456,6 +468,10 @@ h3 {
     padding: 10px;
     margin-bottom: 15px;
 }
+    #card-content-options .catalogue .product {
+        width: 250px;
+        margin-left: 50px;
+    }
     .catalogue .product .product-image {
         text-align: center;
         width: 200px;
@@ -609,7 +625,7 @@ h3 {
 
 .card-tab {
     height: 40px;
-    padding-left: 30px;
+    padding-left: 20px;
 }
     .card-tab a {
         float: left;
@@ -622,7 +638,7 @@ h3 {
         text-decoration: none;
         text-transform: uppercase;
         padding-left: 38px;
-        padding-right: 40px;
+        padding-right: 23px;
     }
     .card-tab a.selected, .card-tab a:hover  {
         color: #000000;
@@ -645,6 +661,9 @@ h3 {
     }
     .card-tab a.card-tab-video {
         background-image: url('/image/card_video.png');
+    }
+    .card-tab a.card-tab-options {
+        background-image: url('/image/card_options.png');
     }
     .card-tab a.card-tab-files {
         background-image: url('/image/card_files.png');

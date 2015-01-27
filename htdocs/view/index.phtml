@@ -16,7 +16,7 @@
         <script type="text/javascript" src="/js/jquery.cycle2.carousel.min.js"></script>
         <script type="text/javascript" src="/js/interface.js"></script>
     </head>
-    <body>
+    <body<?php if (Adminko\System::controller()) { ?> id="default"<?php } else { ?> id="index"<?php } ?>>
         <div class="wrapper">
             <div class="header">
                 <div class="left">
@@ -65,6 +65,11 @@
 <?php if (isset($this->right)) { ?>
                 <div class="right">
 <?= $this->right ?>
+                </div>
+<?php } ?>
+<?php if (isset($this->bottom)) { ?>
+                <div class="bottom">
+<?= $this->bottom ?>
                 </div>
 <?php } ?>
             </div>

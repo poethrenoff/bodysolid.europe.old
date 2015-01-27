@@ -49,7 +49,7 @@ class ProductModel extends Model
     }
     
     // Возвращает список лучших товаров
-    public function getBestProductList($limit = 6)
+    public function getBestProductList($limit = 4)
     {
         return Model::factory('product')->getList(
             array('product_active' => 1, 'product_best' => 1),
@@ -92,6 +92,26 @@ class ProductModel extends Model
         return Model::factory('download')->getList(
             array('download_product' => $this->getId()), array('download_order' => 'asc')
         );
+    }
+    
+    // Возвращает список опций
+    public function getOptionsList()
+    {
+        $records = Db::selectAll('
+            select
+                product.*
+            from
+                product
+                inner join catalogue on product.product_catalogue = catalogue.catalogue_id
+                inner join product_link on product_link.link_product_id = product.product_id
+            where
+                product_link.product_id = :product_id and
+                product_active = :product_active and catalogue_active = :catalogue_active
+            order by
+                product.product_order',
+            array('product_id' => $this->getId(), 'product_active' => 1, 'catalogue_active' => 1)
+        );
+        return $this->getBatch($records);
     }
     
     // Возвращает товары по статье

@@ -110,13 +110,13 @@ function setMark(mark) {
 }
 
 var background = [
-    '/image/background01.jpg', '/image/background02.jpg', '/image/background03.jpg'
+    '/image/background01.jpg', '/image/background02.jpg', '/image/background03.jpg', '/image/background04.jpg'
 ];
 
 $(function () {
     $.supersized({
         slides: [{
-            image: background[Math.floor(Math.random() * 3)]
+            image: background[Math.floor(Math.random() * background.length)]
         }]
     });
     
