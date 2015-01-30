@@ -81,7 +81,7 @@ class Metadata
                 'product_description' => array('title' => 'Описание', 'type' => 'text', 'editor' => 1),
                 'product_short_description' => array('title' => 'Краткое описание', 'type' => 'text'),
                 'product_price_usd' => array('title' => 'Цена в долларах', 'type' => 'float'),
-                'product_price_rub' => array('title' => 'Цена в рублях', 'type' => 'float', 'errors' => array('require')),
+                'product_price_rub' => array('title' => 'Цена в рублях', 'type' => 'float'),
                 'product_best' => array('title' => 'Лучший товар', 'type' => 'boolean', 'filter' => 1),
                 'product_state' => array('title' => 'Наличие', 'type' => 'select', 'filter' => 1, 'values' => array(
                         array('value' => 'stock', 'title' => 'В наличии'),

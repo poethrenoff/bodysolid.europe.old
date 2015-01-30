@@ -38,7 +38,7 @@ class ProductModel extends Model
     public function getProductPrice()
     {
         if (is_null(self::$course)) {
-            self::$course = get_preference('cource');
+            self::$course = get_preference('course');
         }
         
         if ($this->getProductPriceUsd()) {
