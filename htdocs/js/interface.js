@@ -109,15 +109,12 @@ function setMark(mark) {
     $('.vote .star:lt(' + mark + ')').addClass('active');
 }
 
-var background = [
-    '/image/background01.jpg', '/image/background02.jpg', '/image/background03.jpg', '/image/background04.jpg'
-];
-
 $(function () {
     $.supersized({
-        slides: [{
-            image: background[Math.floor(Math.random() * background.length)]
-        }]
+        slides: [
+            {image: '/image/background01.jpg'}, {image: '/image/background02.jpg'},
+            {image: '/image/background03.jpg'}, {image: '/image/background04.jpg'}
+        ]
     });
     
     $('.teaser-slideshow').cycle();
