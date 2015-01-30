@@ -114,7 +114,8 @@ $(function () {
         slides: [
             {image: '/image/background01.jpg'}, {image: '/image/background02.jpg'},
             {image: '/image/background03.jpg'}, {image: '/image/background04.jpg'}
-        ]
+        ],
+        slide_interval: 15000
     });
     
     $('.teaser-slideshow').cycle();
