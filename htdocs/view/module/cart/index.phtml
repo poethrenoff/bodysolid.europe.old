@@ -31,7 +31,7 @@
                 </div>
             </td>
             <td class="price">
-                <?= $item->price ?>
+                <?= $item->price ?> 
             </td>
             <td class="quantity">
                 <input type="hidden" value="<?= $item->price ?>" name="price[<?= $product->getId() ?>]"/>
@@ -42,7 +42,7 @@
                 <a href="" class="cart_inc" onclick="return incItem(this)"></a>
             </td>
             <td class="cost">
-                <?= $item->quantity * $item->price ?>
+                <?= $item->quantity * $item->price ?> 
             </td>
             <td class="delete">
                 <a href="/cart/delete/<?= $product->getId() ?>" onclick="return confirm('Вы уверены, что хотите удалить товар?')"><img src="/image/delete.png" /></a>

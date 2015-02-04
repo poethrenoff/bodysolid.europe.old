@@ -42,7 +42,7 @@ class ProductModel extends Model
         }
         
         if ($this->getProductPriceUsd()) {
-            return $this->getProductPriceUsd() * self::$course;
+            return round($this->getProductPriceUsd() * self::$course);
         } else {
             return $this->getProductPriceRub();
         }
