@@ -143,7 +143,7 @@ textarea {
                 cursor: pointer;
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
                 text-transform: uppercase;
-                padding: 0px 18px;
+                padding: 0px 14px;
             }
             .header .left .menu ul li ul {
                 display: none;

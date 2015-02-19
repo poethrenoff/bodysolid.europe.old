@@ -12,16 +12,15 @@ $alt_picture_big_path = 'c:/Users/poethrenoff/Project/bodysolid/www/images/produ
 $picture_upload_path = 'c:/Users/poethrenoff/Project/bodysolid.europe/htdocs/upload/product/';
 $picture_upload_link = '/upload/product/';
 
-$categories = Dbs::selectAll("SELECT * FROM categories WHERE group_id = 6 ORDER BY category_order");
+$categories = Dbs::selectAll("SELECT * FROM categories WHERE group_id = 5 ORDER BY category_order");
 
 $catalogue_order = 0;
 foreach ($categories as $category) {
     Db::insert('catalogue', array(
-        'catalogue_parent' => 1,
+        'catalogue_parent' => 4,
         'catalogue_title' => $category['category_name'],
         'catalogue_short_title' => $category['category_short_name'],
         'catalogue_name' => to_file_name($category['category_short_name'], true),
-        'catalogue_description' => '',
         'catalogue_order' => ++$catalogue_order,
         'catalogue_active' => 1,
     ));
@@ -37,8 +36,8 @@ foreach ($categories as $category) {
             'product_article' => '',
             'product_description' => $product['product_full_desc'],
             'product_short_description' => $product['product_short_desc'],
-            'product_price_usd' => 0,
-            'product_price_rub' => $product['product_price'],
+            'product_price_usd' => $product['product_price'],
+            'product_price_rub' => 0,
             'product_best' => 0,
             'product_state' => 'stock',
             'product_rating' => 0,
