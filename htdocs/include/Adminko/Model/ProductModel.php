@@ -128,7 +128,7 @@ class ProductModel extends Model
                 product_article.article_id = :article_id and
                 product_active = :product_active and catalogue_active = :catalogue_active
             order by
-                product_order asc
+                rand()
             ' . ($limit ? ('limit ' . $limit) : ''),
             array('article_id' => $article->getId(), 'product_active' => 1, 'catalogue_active' => 1)
         );        
