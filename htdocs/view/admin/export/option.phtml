@@ -1,0 +1,4 @@
+<?php foreach ($this->catalogue_tree->getChildren() as $catalogue_item) { ?>
+<option value="<?= $catalogue_item->getId() ?>"><?= str_repeat('&nbsp;', 4 * $this->depth) ?><?= $catalogue_item->getCatalogueTitle() ?></option>
+<?= Adminko\View::block('admin/export/option', array('catalogue_tree' => $catalogue_item, 'depth' => $this->depth + 1)) ?> 
+<?php } ?>

@@ -1,0 +1,41 @@
+<table class="title">
+	<tr>
+		<td class="title">
+			<b><?= $this->title ?></b>
+		</td>
+	</tr>
+</table>	
+<br/>
+<?php if ($this->message) { ?>
+<div class="error">
+	<?= $this->message ?> 
+</div>
+<br/>
+<?php } ?>
+<form action="<?= $this -> form_url ?>" method="post" enctype="multipart/form-data" >
+	<table class="record">
+		<tr>
+			<td class="title">
+				Файл импорта
+			</td>
+			<td class="field">
+				<input type="file" name="file" class="file" size="70%"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="title">
+				Что импортировать
+			</td>
+			<td class="field">
+				<input type="radio" name="type" value="price"/> только цены
+				<input type="radio" name="type" value="state"/> только наличие
+				<input type="radio" name="type" value="all" checked="checked"/> цены и наличие
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Начать импорт" class="button" style="width: 150px"/>
+			</td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,48 @@
+<table class="title">
+	<tr>
+		<td class="title">
+			<b><?= $this->title ?></b>
+		</td>
+	</tr>
+</table>	
+<br/>
+<form action="<?= $this -> form_url ?>" method="get">
+	<table class="record" style="width: 500px">
+		<tr>
+			<td class="title">
+				Раздел:
+			</td>
+			<td class="field">
+				<select name="product_catalogue" class="list">
+					<option value=""/>
+<?= Adminko\View::block('admin/export/option', array('catalogue_tree' => $this->catalogue_tree, 'depth' => 0)) ?> 
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="title">
+				Название:
+			</td>
+			<td class="field">
+				<input type="text" name="product_title" value="" class="text"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="title">
+				Видимость:
+			</td>
+			<td class="field">
+				<select name="product_active" class="check">
+					<option value=""/>
+					<option value="1">да</option>
+					<option value="0">нет</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Начать экспорт" class="button" style="width: 150px"/>
+			</td>
+		</tr>
+	</table>
+</form>
