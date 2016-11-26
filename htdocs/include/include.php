@@ -9,3 +9,8 @@ include_once 'autoload.php';
 include_once 'exception.php';
 
 Adminko\System::init();
+
+if (rand(0, 10) == 0) {
+	updateCourse();
+}
+
