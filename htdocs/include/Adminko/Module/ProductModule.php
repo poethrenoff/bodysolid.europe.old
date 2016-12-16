@@ -27,11 +27,10 @@ class ProductModule extends Module
 
     protected function actionMenu()
     {
-        $catalogue_tree = Model::factory('catalogue')->getTree(
-            Model::factory('catalogue')->getList(
-                array('catalogue_active' => 1), array('catalogue_order' => 'asc')
-            )
+        $catalogue_list = Model::factory('catalogue')->getList(
+            array('catalogue_active' => 1), array('catalogue_order' => 'asc')
         );
+        $catalogue_tree = @Model::factory('catalogue')->getTree($catalogue_list);
 
         $this->view->assign($catalogue_tree);
         $this->content = $this->view->fetch('module/product/menu');
