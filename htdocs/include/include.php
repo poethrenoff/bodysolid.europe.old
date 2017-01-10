@@ -11,6 +11,6 @@ include_once 'exception.php';
 Adminko\System::init();
 
 if (rand(0, 10) == 0) {
-	include_once '../script/exchange.php';
+	include_once dirname(__FILE__) . '/../script/exchange.php';
 }
 
